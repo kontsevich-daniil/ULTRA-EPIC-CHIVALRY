@@ -8,8 +8,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float _movementSpeed = 5f;
     [SerializeField] private float _accelerationTime = 0.3f;
-
-    public float groundDrag;
+    [SerializeField] private float _jumpForce = 5.5f;
+    
+    private bool _readyToJump = true;
+    
+    [Header("Keybinds")]
+    private KeyCode _jumpKey = KeyCode.Space;
 
     [Header("GroundChecker")]
     [SerializeField] private float _playerHeight;
@@ -41,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
         InputUser();
         SpeedControl();
         UpdateAcceleration();
-        
-        _rigidbody.drag = _isGrounded ? groundDrag : 0f;
     }
 
     private void FixedUpdate()
@@ -56,25 +58,35 @@ public class PlayerMovement : MonoBehaviour
         _verticalInput = Input.GetAxisRaw("Vertical");
         
         bool inputActive = _horizontalInput != 0 || _verticalInput != 0;
-        
-        if (!isMoving && inputActive)
+
+        isMoving = isMoving switch
         {
-            isMoving = true;
-        }
-        else if (isMoving && !inputActive)
+            false when inputActive => true,
+            true when !inputActive => false,
+            _ => isMoving
+        };
+
+        if (Input.GetKey(_jumpKey) && _readyToJump && _isGrounded)
         {
-            isMoving = false;
+            _readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), 0.5f);
         }
     }
 
     private void MovePlayer()
     {
         _moveDirection = orientation.forward * _verticalInput + orientation.right * _horizontalInput;
-        
-        _rigidbody.AddForce(_moveDirection.normalized * _movementSpeed, ForceMode.Force);
-        
-        float targetSpeed = _movementSpeed * _currentSpeedFactor;
-        _rigidbody.AddForce(_moveDirection.normalized * targetSpeed, ForceMode.Force);
+
+        if (isMoving)
+        {
+            float targetSpeed = _movementSpeed * _currentSpeedFactor;
+            _rigidbody.AddForce(_moveDirection.normalized * targetSpeed, ForceMode.Force);
+        }
+        else
+        {
+            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
+        }
     }
     
     private void UpdateAcceleration()
@@ -91,10 +103,15 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitVelocity = finalVelocity.normalized * _movementSpeed;
             _rigidbody.velocity = new Vector3(limitVelocity.x, _rigidbody.velocity.y, limitVelocity.z);
         }
+    }
 
-        if (transform.position.y < _playerHeight)
-        {
-            
-        }
+    private void Jump()
+    {
+        _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
+    }
+
+    private void ResetJump()
+    {
+        _readyToJump = true;
     }
 }
