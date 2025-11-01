@@ -8,10 +8,13 @@ namespace Data.Enemy
     public class EnemyMelee : EnemyData, IDamageable
     {
         [SerializeField] private Transform _player;
-
+        
         private void Update()
         {
-            if (_isDead || _player == null) return;
+            if (_isDead || _player == null) 
+                return;
+            
+            base.Update();
 
             float distance = Vector3.Distance(transform.position, _player.position);
 

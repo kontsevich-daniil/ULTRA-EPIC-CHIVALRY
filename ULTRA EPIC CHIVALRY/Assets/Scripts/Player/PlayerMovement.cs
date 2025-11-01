@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private KeyCode _jumpKey = KeyCode.Space;
 
     [Header("GroundChecker")]
-    [SerializeField] private float _playerHeight;
+    [SerializeField] private Transform _playerIsGroundChecker;
     [SerializeField] private LayerMask _groundLayer;
     private bool _isGrounded;
     
@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.2f, _groundLayer);
+        _isGrounded = Physics.OverlapSphere(_playerIsGroundChecker.position , 0.2f, _groundLayer).Length > 0;
+        Debug.Log("Y velocity" + _rigidbody.velocity.y);
         
         InputUser();
         SpeedControl();

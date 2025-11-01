@@ -26,6 +26,9 @@ namespace Enemy
         
         [FormerlySerializedAs("enemyConfig")] public EnemySO enemySo;
         public EEnemy type;
+        
+        public float pushDecay = 8f;
+        private Vector3 pushVelocity;
 
         protected void Awake()
         {
@@ -39,6 +42,24 @@ namespace Enemy
             _attackCooldown = enemy.AttackCooldown;
             
             AgentSetup();
+        }
+
+        protected void Update()
+        {
+            if (pushVelocity.sqrMagnitude > 0.001f)
+            {
+                _agent.Move(pushVelocity * Time.deltaTime);
+
+                pushVelocity = Vector3.Lerp(pushVelocity, Vector3.zero, pushDecay * Time.deltaTime);
+            }
+        }
+
+        public void KnockBackFrom(Vector3 source, float strength)
+        {
+            Vector3 dir = (transform.position - source);
+            dir.y = 0;
+            dir.Normalize();
+            pushVelocity += dir * strength;
         }
 
         private void AgentSetup()
