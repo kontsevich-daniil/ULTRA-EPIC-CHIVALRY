@@ -3,64 +3,79 @@ using Configs;
 using Data.Interfaces;
 using ScriptableObjects;
 using UnityEngine;
+using IDamageable = Data.Interfaces.IDamageable;
 
 namespace Data.Weapons
 {
     public class MagicHands : WeaponData
     {
-        private float lastShootTime = -Mathf.Infinity;
-        
+        [SerializeField] private float _damage = 20;
         [Header("Cone Settings")] 
-        public float maxRadius = 10f;
+        [SerializeField] private float maxRadius = 10f;
+        [SerializeField] private LayerMask enemyLayer;
+        [SerializeField] private LayerMask obstacleLayer;
 
-        [Range(0, 180)] public float coneAngle = 45f;
+        [Range(0, 180)] 
+        [SerializeField] private float coneAngle = 45f;
 
-        [Header("Damage Settings")] 
-        public int damage = 10;
-        
-        public LayerMask enemyLayer;
+        private Collider[] _results = new Collider[5];
+        private int _resultsCount;
 
         public override void ShootFirstType()
         {
-            if (Time.time < lastShootTime + CooldownFirstAttack)
+            if(!IsReadyShootFirstType())
                 return;
 
-            lastShootTime = Time.time;
-            
-            Collider[] results = { };
-            Physics.OverlapSphereNonAlloc(transform.position, maxRadius, results, enemyLayer);
+            _resultsCount = Physics.OverlapSphereNonAlloc(transform.position, maxRadius, _results, enemyLayer);
 
-            foreach (var hit in results)
+            TryAttack();
+
+            Debug.Log("Magic Hands Soot First");
+        }
+
+        private void TryAttack()
+        {
+            for (int i = 0; i < _resultsCount; i++)
             {
-                Vector3 directionToTarget = (hit.transform.position - transform.position).normalized;
-
-                float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
-
-                if (angleToTarget <= coneAngle && hit.TryGetComponent(out IDamageble damageble))
+                if (_results[i].TryGetComponent(out IDamageable damageable))
                 {
-                    damageble.TakeDamage(damage);
+                    Vector3 directionToTarget = (_results[i].transform.position - transform.position).normalized;
+                    float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
+                    
+                    if (angleToTarget <= coneAngle)
+                    {
+                        var startPointPosition = transform.position;
+                        var collidersPosition = _results[i].transform.position;
+                        var hasObstacle = Physics.Linecast(startPointPosition, collidersPosition, obstacleLayer);
+                        
+                        if (hasObstacle)
+                            continue;
+                        
+                        damageable.TakeDamage(_damage);
+                    }
                 }
             }
-            Debug.Log("Magic Hands Soot First");
         }
 
         public override void ShootSecondType()
         {
+            if (!IsReadyShootSecondType())
+                return;
         }
 
-        protected override void PlaySound()
+        protected override void PlayEffectsFirstType()
         {
         }
 
-        protected override void EnableVFX()
+        protected override void PlayEffectsSecondType()
         {
         }
-        
+
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = new Color(1, 0, 0, 0.3f);
+            Gizmos.color = new Color(0.1f, 0.3f, 0.9f, 0.8f);
             Vector3 forward = transform.forward;
-            
+
             int segments = 4;
             float stepAngle = coneAngle * 2 / segments;
             Vector3 origin = transform.position;
@@ -75,6 +90,5 @@ namespace Data.Weapons
                 previousPoint = nextPoint;
             }
         }
-
     }
 }

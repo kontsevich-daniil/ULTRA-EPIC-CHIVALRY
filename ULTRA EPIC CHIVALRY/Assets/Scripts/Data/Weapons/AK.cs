@@ -1,41 +1,53 @@
 using Configs;
 using Data.Interfaces;
+using UnityEngine;
 
 namespace Data.Weapons
 {
     public class AK: WeaponData
     {
+        [SerializeField] private Rigidbody playerRigidbody;
+        [SerializeField] private Transform orientationTransform;
+        
+        [SerializeField] private Transform cameraTransform;
+        
+        [SerializeField] private Transform muzzle;
+        [SerializeField, Min(0f)] private float _force = 35f;
+        
+        [SerializeField, Min(0f)] private float _forceDashFirstAttck = 35f;
+        [SerializeField, Min(0f)] private float _forceDashSecondAttack = 35f;
+        
         public override void ShootFirstType()
         {
-            /*if (Time.time < nextFireTime) return;
-
-            nextFireTime = Time.time + FireRate;
-
-            if (BulletPrefab != null)
+            if(!IsReadyShootFirstType())
+                return;
+            
+            if (_bulletPrefab != null)
             {
-                GameObject bullet = Instantiate(BulletPrefab, shootOrigin.position, shootOrigin.rotation);
-                Rigidbody rb = bullet.GetComponent<Rigidbody>();
-                if (rb != null)
-                    rb.AddForce(shootOrigin.forward * 1000f, ForceMode.Impulse);
+                var projectile = Instantiate(_bulletPrefab, muzzle.position, muzzle.rotation);
+                projectile.Rigidbody.AddForce(muzzle.forward * _force, ForceMode.Impulse);
+                playerRigidbody.AddForce(orientationTransform.forward * _forceDashFirstAttck, ForceMode.Impulse);
             }
+            
+        }
 
-            if (shootSound != null)
+        public override void ShootSecondType()
+        {
+            if (!IsReadyShootSecondType())
+                return;
+            
+            playerRigidbody.AddForce(cameraTransform.forward * _forceDashSecondAttack, ForceMode.Impulse);
+        }
+
+        protected override void PlayEffectsFirstType()
+        {
+            /*if (shootSound != null)
             {
                 AudioSource.PlayClipAtPoint(shootSound, shootOrigin.position);
             }*/
         }
 
-        public override void ShootSecondType()
-        {
-            
-        }
-
-        protected override void PlaySound()
-        {
-            
-        }
-
-        protected override void EnableVFX()
+        protected override void PlayEffectsSecondType()
         {
             
         }

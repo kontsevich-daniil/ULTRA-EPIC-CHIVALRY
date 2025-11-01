@@ -1,4 +1,5 @@
 using System;
+using Data.Bullet;
 using Enums;
 using UnityEngine;
 
@@ -9,10 +10,8 @@ namespace Configs
     {
         [Header("Data")]
         public EWeapon Type;
-        public float Damage;
-        public float FireRate;
         public int AmmoCount;
-        public GameObject BulletPrefab;
+        public ProjectileData BulletPrefab;
         public float CooldownFirstAttack;
         public float CooldownSecondAttack;
         

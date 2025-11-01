@@ -1,7 +1,8 @@
 namespace Data.Interfaces
 {
-    public interface IDamageble
+    public interface IDamageable
     {
         public void TakeDamage(float damage);
+        public void Die();
     }
 }

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Data;
 using Enums;
-using ScriptableObjects;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -34,13 +33,13 @@ namespace Controllers
 
         private void HandleInput()
         {
-            if (Input.GetMouseButtonDown(0)) ShootFirstType();
+            if (Input.GetMouseButton(0)) ShootFirstType();
             if (Input.GetMouseButtonDown(1)) ShootSecondType();
                 
             if (Input.GetKeyDown(KeyCode.Alpha1)) _inventoryData.SelectWeapon(EWeapon.MagicHand);
-            //if (Input.GetKeyDown(KeyCode.Alpha2)) _inventoryData.SelectWeapon(1);
-            //if (Input.GetKeyDown(KeyCode.Alpha3)) _inventoryData.SelectWeapon(2);
-            //if (Input.GetKeyDown(KeyCode.Alpha4)) _inventoryData.SelectWeapon(3);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) _inventoryData.SelectWeapon(EWeapon.Knifes);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) _inventoryData.SelectWeapon(EWeapon.AK);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) _inventoryData.SelectWeapon(EWeapon.Crossbow);
         }
 
         private void PickWeapon(EWeapon weaponType)
@@ -51,13 +50,11 @@ namespace Controllers
         private void ShootFirstType()
         {
             _currentWeapon.ShootFirstType();
-            Debug.Log("ShootFirst");
         }
 
         private void ShootSecondType()
         {
-            _currentWeapon.ShootFirstType();
-            Debug.Log("ShootSecond");
+            _currentWeapon.ShootSecondType();
         }
     }
 }

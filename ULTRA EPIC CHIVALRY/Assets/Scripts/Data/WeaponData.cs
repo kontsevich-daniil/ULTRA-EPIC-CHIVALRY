@@ -1,8 +1,10 @@
 using System;
 using Configs;
+using Data.Bullet;
 using Enums;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Data
@@ -10,37 +12,65 @@ namespace Data
     [Serializable]
     public abstract class WeaponData: MonoBehaviour
     {
-        public WeaponSettings weaponSettings;
+        [FormerlySerializedAs("weaponConfig")] [FormerlySerializedAs("weaponSettings")] public WeaponSO weaponSo;
         
-        protected float Damage;
-        protected float FireRate;
-        protected int AmmoCount;
-        protected GameObject BulletPrefab;
-        protected AudioClip ShootSound;
-        protected float CooldownFirstAttack;
-        protected float CooldownSecondAttack;
+        protected int _ammoCount;
+        protected float _cooldownFirstAttack;
+        protected float _cooldownSecondAttack;
+        protected ProjectileData _bulletPrefab;
+        protected AudioClip _shootSound;
+        
+        private float lastShootTimeFirstAttack;
+        private float lastShootTimeSecondAttack;
+        
+        private float _elapsedTime;
         
         public EWeapon type;
 
         protected void Awake()
         {
-            var weaponConfig = weaponSettings.GetWeapon(type);
+            var weaponConfig = weaponSo.GetWeapon(type);
             
-            Damage = weaponConfig.Damage;
-            FireRate = weaponConfig.FireRate;
-            AmmoCount = weaponConfig.AmmoCount;
-            BulletPrefab = weaponConfig.BulletPrefab;
-            ShootSound = weaponConfig.ShootSound;
-            CooldownFirstAttack = weaponConfig.CooldownFirstAttack;
-            CooldownSecondAttack = weaponConfig.CooldownSecondAttack;
+            _ammoCount = weaponConfig.AmmoCount;
+            _bulletPrefab = weaponConfig.BulletPrefab;
+            _shootSound = weaponConfig.ShootSound;
+            _cooldownFirstAttack = weaponConfig.CooldownFirstAttack;
+            _cooldownSecondAttack = weaponConfig.CooldownSecondAttack;
         }
 
-        
-        public abstract void ShootFirstType();
-        
-        public abstract void ShootSecondType();
-        protected abstract void PlaySound();
+        protected bool IsReadyShootFirstType()
+        {
+            if(_ammoCount == 0)
+                return false;
+            
+            if (Time.time < lastShootTimeFirstAttack + _cooldownFirstAttack) 
+                return false;
+            
+            lastShootTimeFirstAttack = Time.time;
 
-        protected abstract void EnableVFX();
+            if (_ammoCount >=0)
+                _ammoCount--;
+            
+            Debug.Log("ShootFirst");
+            return true;
+        }
+
+        protected bool IsReadyShootSecondType()
+        {
+            if (Time.time < lastShootTimeSecondAttack + _cooldownSecondAttack) 
+                return false;
+            
+            lastShootTimeSecondAttack = Time.time;
+            
+            Debug.Log("ShootSecond");
+            return true;
+        }
+
+        public abstract void ShootFirstType();
+
+        public abstract void ShootSecondType();
+        
+        protected abstract void PlayEffectsFirstType();
+        protected abstract void PlayEffectsSecondType();
     }
 }
