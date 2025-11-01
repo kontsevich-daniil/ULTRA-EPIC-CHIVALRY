@@ -3,6 +3,7 @@ using Configs;
 using Enums;
 using ScriptableObjects;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Data
@@ -10,37 +11,32 @@ namespace Data
     [Serializable]
     public abstract class WeaponData: MonoBehaviour
     {
-        public WeaponSettings weaponSettings;
+        [FormerlySerializedAs("weaponConfig")] [FormerlySerializedAs("weaponSettings")] public WeaponSO weaponSo;
         
-        protected float Damage;
-        protected float FireRate;
-        protected int AmmoCount;
-        protected GameObject BulletPrefab;
-        protected AudioClip ShootSound;
-        protected float CooldownFirstAttack;
-        protected float CooldownSecondAttack;
+        protected float _damage;
+        protected int _ammoCount;
+        protected float _cooldownFirstAttack;
+        protected float _cooldownSecondAttack;
+        protected GameObject _bulletPrefab;
+        protected AudioClip _shootSound;
         
         public EWeapon type;
 
         protected void Awake()
         {
-            var weaponConfig = weaponSettings.GetWeapon(type);
+            var weaponConfig = this.weaponSo.GetWeapon(type);
             
-            Damage = weaponConfig.Damage;
-            FireRate = weaponConfig.FireRate;
-            AmmoCount = weaponConfig.AmmoCount;
-            BulletPrefab = weaponConfig.BulletPrefab;
-            ShootSound = weaponConfig.ShootSound;
-            CooldownFirstAttack = weaponConfig.CooldownFirstAttack;
-            CooldownSecondAttack = weaponConfig.CooldownSecondAttack;
+            _damage = weaponConfig.Damage;
+            _ammoCount = weaponConfig.AmmoCount;
+            _bulletPrefab = weaponConfig.BulletPrefab;
+            _shootSound = weaponConfig.ShootSound;
+            _cooldownFirstAttack = weaponConfig.CooldownFirstAttack;
+            _cooldownSecondAttack = weaponConfig.CooldownSecondAttack;
         }
-
         
         public abstract void ShootFirstType();
-        
         public abstract void ShootSecondType();
         protected abstract void PlaySound();
-
         protected abstract void EnableVFX();
     }
 }

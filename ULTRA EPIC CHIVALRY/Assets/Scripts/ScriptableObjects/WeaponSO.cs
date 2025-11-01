@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "WeaponSettings", menuName = "Game/Weapon Settings")]
-    public class WeaponSettings: ScriptableObject
+    [CreateAssetMenu(fileName = "WeaponSO", menuName = "Game/Weapon SO")]
+    public class WeaponSO: ScriptableObject
     {
-        public List<WeaponConfig> Weapons;
+        public List<Configs.WeaponConfig> Weapons;
 
-        public WeaponConfig GetWeapon(EWeapon weaponType)
+        public Configs.WeaponConfig GetWeapon(EWeapon weaponType)
         {
             return Weapons.FirstOrDefault(data => data.Type == weaponType);
         }

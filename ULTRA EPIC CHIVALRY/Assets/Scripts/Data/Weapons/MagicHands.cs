@@ -14,20 +14,17 @@ namespace Data.Weapons
         public float maxRadius = 10f;
 
         [Range(0, 180)] public float coneAngle = 45f;
-
-        [Header("Damage Settings")] 
-        public int damage = 10;
         
         public LayerMask enemyLayer;
 
         public override void ShootFirstType()
         {
-            if (Time.time < lastShootTime + CooldownFirstAttack)
+            if (Time.time < lastShootTime + _cooldownFirstAttack)
                 return;
 
             lastShootTime = Time.time;
             
-            Collider[] results = { };
+            Collider[] results = new Collider[5];
             Physics.OverlapSphereNonAlloc(transform.position, maxRadius, results, enemyLayer);
 
             foreach (var hit in results)
@@ -36,9 +33,9 @@ namespace Data.Weapons
 
                 float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
 
-                if (angleToTarget <= coneAngle && hit.TryGetComponent(out IDamageble damageble))
+                if (angleToTarget <= coneAngle && hit.TryGetComponent(out IDamageable damageble))
                 {
-                    damageble.TakeDamage(damage);
+                    damageble.TakeDamage(_damage);
                 }
             }
             Debug.Log("Magic Hands Soot First");
@@ -58,7 +55,7 @@ namespace Data.Weapons
         
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = new Color(1, 0, 0, 0.3f);
+            Gizmos.color = new Color(0.1f, 0.3f, 0.9f, 0.8f);
             Vector3 forward = transform.forward;
             
             int segments = 4;
@@ -75,6 +72,5 @@ namespace Data.Weapons
                 previousPoint = nextPoint;
             }
         }
-
     }
 }
