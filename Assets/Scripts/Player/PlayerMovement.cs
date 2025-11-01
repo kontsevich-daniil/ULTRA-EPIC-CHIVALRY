@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         _isGrounded = Physics.OverlapSphere(_playerIsGroundChecker.position , 0.2f, _groundLayer).Length > 0;
-        Debug.Log("Y velocity" + _rigidbody.velocity.y);
         
         InputUser();
         SpeedControl();

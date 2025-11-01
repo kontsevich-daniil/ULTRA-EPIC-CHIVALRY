@@ -74,4 +74,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8c5fd747b14aeb9b09bc375a547bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSettings: {fileID: 11400000, guid: 4935795a4e8264c4cb1eea190506d992, type: 2}
+  playerPrefab: {fileID: 8568788759591899784, guid: 8fae748bdab01438e974339911f03b47, type: 3}

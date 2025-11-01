@@ -12,7 +12,7 @@ namespace Data
     [Serializable]
     public abstract class WeaponData: MonoBehaviour
     {
-        [FormerlySerializedAs("weaponConfig")] [FormerlySerializedAs("weaponSettings")] public WeaponSO weaponSo;
+        [SerializeField] private WeaponSO weaponSo;
         
         protected int _ammoCount;
         protected float _cooldownFirstAttack;

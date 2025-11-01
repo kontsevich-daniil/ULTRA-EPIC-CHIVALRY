@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4007903737312613916}
   - component: {fileID: 6385208098227938194}
   - component: {fileID: 2266805953074032517}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 11526
+  m_VersionIndex: 11538
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -420,9 +420,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.3225446, y: 36.963116, z: 4.985899}
+  m_Size: {x: 5.3225446, y: 39.46, z: 4.985899}
   m_Center: {x: -2.6612713, y: -18.508787, z: 1.3545752}

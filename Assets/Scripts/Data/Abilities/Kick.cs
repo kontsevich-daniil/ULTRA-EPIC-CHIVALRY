@@ -66,6 +66,11 @@ namespace Data.Abilities
                             enemy.KnockBackFrom(collidersTarget.forward, _forceAttack);
                     }
                 }
+
+                if (_results[i].TryGetComponent(out IDestroyerObject damageableObject))
+                {
+                    damageableObject.DestroySelf();
+                }
             }
         }
         
