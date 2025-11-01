@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 139556736}
   - component: {fileID: 139556739}
   - component: {fileID: 139556738}
-  - component: {fileID: 139556737}
   m_Layer: 5
   m_Name: AKmodel
   m_TagString: Untagged
@@ -160,27 +159,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &139556737
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 139556735}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0abdcaa9d7cc4add9ed9e5ad3230d7a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &139556738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,7 +208,6 @@ GameObject:
   - component: {fileID: 205841935}
   - component: {fileID: 205841938}
   - component: {fileID: 205841937}
-  - component: {fileID: 205841936}
   m_Layer: 5
   m_Name: AKturbine
   m_TagString: Untagged
@@ -257,27 +234,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &205841936
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205841934}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0abdcaa9d7cc4add9ed9e5ad3230d7a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &205841937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +289,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &273407848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -352,7 +308,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 584, y: -399}
+  m_AnchoredPosition: {x: 502, y: -261}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &273407849
@@ -402,7 +358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &444284691
 RectTransform:
   m_ObjectHideFlags: 0
@@ -531,14 +487,14 @@ RectTransform:
   m_GameObject: {fileID: 499037338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 19.02, y: 13.726105, z: 13.726105}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 22.44, y: 16.19421, z: 16.19421}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 273407848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -81, y: 175}
+  m_AnchoredPosition: {x: -218, y: 272}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &499037340
@@ -712,14 +668,14 @@ RectTransform:
   m_GameObject: {fileID: 582659888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 19.02, y: 13.726105, z: 13.726105}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 22.44, y: 16.19421, z: 16.19421}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 273407848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -188, y: 256}
+  m_AnchoredPosition: {x: -325, y: 353}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &582659890
@@ -1719,7 +1675,6 @@ GameObject:
   - component: {fileID: 2024030455}
   - component: {fileID: 2024030458}
   - component: {fileID: 2024030457}
-  - component: {fileID: 2024030456}
   m_Layer: 5
   m_Name: AKfiretip
   m_TagString: Untagged
@@ -1746,27 +1701,6 @@ RectTransform:
   m_AnchoredPosition: {x: 404, y: -67}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &2024030456
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2024030454}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0abdcaa9d7cc4add9ed9e5ad3230d7a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2024030457
 MonoBehaviour:
   m_ObjectHideFlags: 0
