@@ -23,7 +23,7 @@ namespace Controllers
         
         private void Start()
         {
-            _inventoryData.CurrentWeaponType.Subscribe(PickWeapon).AddTo(this);
+            // _inventoryData.CurrentWeaponType.Subscribe(PickWeapon).AddTo(this);
         }
         
         private void Update()
