@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private float _accelerationTime = 0.3f;
-    [SerializeField] private float _jumpForce = 5.5f;
+    [SerializeField] private float _movementSpeed = 8f;
+    [SerializeField] private float _accelerationTime = 0.05f;
+    [SerializeField] private float _jumpForce = 3f;
     
     private bool _readyToJump = true;
     
@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody _rigidbody;
     public bool isMoving;
+    public bool isStopController = false;
     
     private void Start()
     {
@@ -37,8 +38,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isStopController)
+            return;
+        
         _isGrounded = Physics.OverlapSphere(_playerIsGroundChecker.position , 0.2f, _groundLayer).Length > 0;
-        Debug.Log("Y velocity" + _rigidbody.velocity.y);
         
         InputUser();
         SpeedControl();
@@ -111,5 +114,18 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         _readyToJump = true;
+    }
+
+    public void StopController()
+    {
+        isStopController = true;
+        _rigidbody.isKinematic = true;
+        _rigidbody.velocity = Vector3.zero;
+    }
+    
+    public void StartController()
+    {
+        isStopController = false;
+        _rigidbody.isKinematic = false;
     }
 }

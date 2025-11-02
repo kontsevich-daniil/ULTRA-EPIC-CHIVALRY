@@ -151,3 +151,6 @@ MonoBehaviour:
   _spawnEffectOnDestroy: 0
   _effectOnDestroyPrefab: {fileID: 0}
   _effectOnDestroyLifetime: 2
+  _ignoredLayerMask:
+    serializedVersion: 2
+    m_Bits: 128

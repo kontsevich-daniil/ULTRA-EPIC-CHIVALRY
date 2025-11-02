@@ -28,7 +28,7 @@ MonoBehaviour:
   - Type: 2
     AmmoCount: 35
     BulletPrefab: {fileID: -7380558472229494180, guid: 014fd9324716b4b3581af0fc93f31801, type: 3}
-    CooldownFirstAttack: 0.5
+    CooldownFirstAttack: 0.1
     CooldownSecondAttack: 2
     ShootSound: {fileID: 0}
   - Type: 3

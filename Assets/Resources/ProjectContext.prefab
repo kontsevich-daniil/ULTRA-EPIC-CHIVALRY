@@ -74,4 +74,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc8c5fd747b14aeb9b09bc375a547bdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponSettings: {fileID: 11400000, guid: 4935795a4e8264c4cb1eea190506d992, type: 2}
+  playerPrefab: {fileID: -94197870577065785, guid: 8fae748bdab01438e974339911f03b47, type: 3}
+  soundController: {fileID: 5517087896668613684, guid: b51ae7a9fc3f34d0ba8249cf70102c6f, type: 3}

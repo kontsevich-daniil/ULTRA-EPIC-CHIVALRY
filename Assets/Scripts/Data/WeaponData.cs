@@ -3,6 +3,7 @@ using Configs;
 using Data.Bullet;
 using Enums;
 using ScriptableObjects;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -12,9 +13,9 @@ namespace Data
     [Serializable]
     public abstract class WeaponData: MonoBehaviour
     {
-        [FormerlySerializedAs("weaponConfig")] [FormerlySerializedAs("weaponSettings")] public WeaponSO weaponSo;
+        [SerializeField] private WeaponSO weaponSo;
         
-        protected int _ammoCount;
+        private int _ammoCount = 0;
         protected float _cooldownFirstAttack;
         protected float _cooldownSecondAttack;
         protected ProjectileData _bulletPrefab;
@@ -26,6 +27,7 @@ namespace Data
         private float _elapsedTime;
         
         public EWeapon type;
+        public int AmmoCount => _ammoCount;
 
         protected void Awake()
         {
