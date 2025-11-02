@@ -2,6 +2,7 @@ using System.ComponentModel;
 using Controllers;
 using Data;
 using ScriptableObjects;
+using Sounds;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +11,7 @@ namespace Installers
     public class Bootstrap: MonoInstaller
     {
         public PlayerData playerPrefab;
+        public SoundController soundController;
         public override void InstallBindings()
         {
             Container.Bind<GameController>().AsSingle().NonLazy();
@@ -31,6 +33,11 @@ namespace Installers
             Container.Bind<WeaponController>()
                 .FromInstance(instance.GetComponent<PlayerData>().weaponController)
                 .AsSingle();
+            
+            Container.Bind<SoundController>()
+                .FromComponentsInNewPrefab(soundController)
+                .AsSingle()
+                .NonLazy();
         }
     }
 }

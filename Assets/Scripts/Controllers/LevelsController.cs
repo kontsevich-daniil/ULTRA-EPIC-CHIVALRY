@@ -13,7 +13,7 @@ namespace Installers
         private bool _isLoaded;
         private bool _shouldLoad;
         private int _maxLevelCount = 1;
-        private int _currentLevelIndex = 1;
+        private int _currentLevelIndex = 0;
 
         private CompositeDisposable levelsDisposable = new();
 
@@ -29,6 +29,10 @@ namespace Installers
             _gameController.LevelStart
                 .Subscribe(_ => NextLevel())
                 .AddTo(levelsDisposable);
+            
+            _gameController.LevelRestart
+                .Subscribe(_ => RestartLevel())
+                .AddTo(levelsDisposable);
         }
 
         private void LoadScene(int levelIndex)
@@ -36,7 +40,7 @@ namespace Installers
             if (_isLoaded)
                 return;
 
-            SceneManager.LoadSceneAsync("lvl" + levelIndex, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
             _isLoaded = true;
         }
 
@@ -45,7 +49,7 @@ namespace Installers
             /*if (!_isLoaded)
                 return;*/
 
-            SceneManager.UnloadSceneAsync("lvl" + (_currentLevelIndex - 1));
+            SceneManager.UnloadSceneAsync(_currentLevelIndex - 1);
             _isLoaded = false;
         }
 
@@ -58,7 +62,7 @@ namespace Installers
 
         public void RestartLevel()
         {
-            //LoadLevelWithIndex(_currentLevelIndex);
+            SceneManager.LoadScene(_currentLevelIndex);
         }
 
         public void NewGame()
