@@ -5,42 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93bbfbbb-302d-49d6-9596-de4b13014537" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/UI.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/UI/WeaponUI.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/UI/WeaponUI.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.ULTRA-EPIC-CHIVALRY/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ULTRA-EPIC-CHIVALRY/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/AK/AK_Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/AK/AK_Attack.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/AK/AK_animator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/AK/AK_animator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/Crossbow/Crossbow_Animation.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/Crossbow/Crossbow_Animation.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/Crossbow/weapon_Crossbow.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/Crossbow/weapon_Crossbow.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/Daggers/Daggers_animator.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/Daggers/Daggers_animator.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/Leg/weapon_Leg.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/Leg/weapon_Leg.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/Magic/Magic_Attack.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/Magic/Magic_Attack.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Weapons/Magic/weapon_Magic.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Weapons/Magic/weapon_Magic.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EasyPeasyFirstPersonController/Prefabs/FirstPersonController.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EasyPeasyFirstPersonController/Prefabs/FirstPersonController.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/EasyPeasyFirstPersonController/Scripts/FirstPersonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/EasyPeasyFirstPersonController/Scripts/FirstPersonController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Material 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/New Material 1.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Material 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/New Material 2.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/New Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player 1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player 1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Alex Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Alex Scene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/lvl1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/lvl1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/lvl2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/lvl2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/WeaponController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/WeaponController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Kick.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Abilities/Kick.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Enemy/Billboard.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Enemy/Billboard.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Enemy/BillboardProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Enemy/BillboardProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Enemy/EnemyMelee.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Enemy/EnemyMelee.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/PlayerData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/PlayerData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Projectiles/AkProjectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Projectiles/AkProjectile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/WeaponData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/WeaponData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/AK.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/AK.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Crossbow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Crossbow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Knifes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/Knifes.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/MagicHands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/Weapons/MagicHands.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enums/EWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enums/EWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/Bootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/Bootstrap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +103,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762000658510</updated>
-      <workItem from="1762000659543" duration="57628000" />
+      <workItem from="1762000659543" duration="57948000" />
     </task>
     <servers />
   </component>
