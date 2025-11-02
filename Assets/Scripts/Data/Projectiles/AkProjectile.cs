@@ -23,7 +23,7 @@ namespace Data.Projectiles
         
         protected override void OnTargetCollision(Collision collision, IDamageable damageable)
         {
-            if (collision.gameObject.CompareTag("Player")) 
+            if (collision.gameObject.layer == LayerMask.NameToLayer("Player")) 
                 return;
             
             base.OnTargetCollision(collision, damageable);

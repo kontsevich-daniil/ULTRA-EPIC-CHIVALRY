@@ -8,5 +8,6 @@ namespace Enums
         Knifes = 1,
         AK = 2,
         Crossbow = 3,
+        Leg = 4,
     }
 }

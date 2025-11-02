@@ -13,9 +13,9 @@ namespace Data.Enemy
         [SerializeField] private Transform _player;
 
         [Inject]
-        private void Initialized(PlayerMovement playerMovement)
+        private void Initialized(PlayerController playerController)
         {
-            _player = playerMovement.transform;
+            _player = playerController.transform;
         }
 
         private void Update()

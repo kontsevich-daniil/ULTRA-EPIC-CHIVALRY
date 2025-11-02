@@ -68,6 +68,8 @@ namespace EasyPeasyFirstPersonController
         private float slideSpeedVelocity;
         private float currentTiltAngle;
         private float tiltVelocity;
+        
+        private bool isStateController = true;
 
         public float CurrentCameraHeight => isCrouching || isSliding ? crouchCameraHeight : originalCameraParentHeight;
 
@@ -106,6 +108,9 @@ namespace EasyPeasyFirstPersonController
             {
                 coyoteTimer -= Time.deltaTime;
             }
+            
+            if(!isStateController)
+                return;
 
             if (isLook)
             {
@@ -278,6 +283,11 @@ namespace EasyPeasyFirstPersonController
         public void SetMoveControl(bool newState)
         {
             isMove = newState;
+        }
+
+        public void SetSateController(bool state)
+        {
+            isStateController = state;
         }
 
         public void SetCursorVisibility(bool newVisibility)

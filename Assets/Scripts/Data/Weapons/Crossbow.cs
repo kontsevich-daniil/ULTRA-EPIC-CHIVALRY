@@ -9,17 +9,17 @@ namespace Data.Weapons
         [SerializeField] private Transform muzzle;
         [SerializeField, Min(0f)] private float _force = 35f;
         
-        public override void ShootFirstType()
+        public override bool ShootFirstType()
         {
             if(!IsReadyShootFirstType())
-                return;
+                return false;
             
             if (_bulletPrefab != null)
             {
                 var projectile = Instantiate(_bulletPrefab, muzzle.position, muzzle.rotation);
                 projectile.Rigidbody.AddForce(muzzle.forward * _force, ForceMode.Impulse);
             }
-            
+            return true;
         }
 
         public override void ShootSecondType()

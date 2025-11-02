@@ -5,20 +5,20 @@ using Zenject;
 
 public class Billboard : MonoBehaviour
 {
-    private PlayerMovement _playerMovement;
+    private PlayerController _playerController;
     private Transform playerCamera;
 
     public bool lockYRotation = true;
     
     [Inject]
-    private void Initialized(PlayerMovement playerMovement)
+    private void Initialized(PlayerController playerController)
     {
-        _playerMovement = playerMovement;
+        _playerController = playerController;
     }
 
     private void Start()
     {
-        playerCamera = _playerMovement.transform;
+        playerCamera = _playerController.transform;
     }
 
     void Update()

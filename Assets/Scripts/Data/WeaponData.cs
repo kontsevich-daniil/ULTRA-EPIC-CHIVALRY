@@ -68,7 +68,7 @@ namespace Data
             return true;
         }
 
-        public abstract void ShootFirstType();
+        public abstract bool ShootFirstType();
 
         public abstract void ShootSecondType();
         

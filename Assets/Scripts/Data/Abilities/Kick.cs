@@ -2,27 +2,31 @@ using Cysharp.Threading.Tasks;
 using Data.Enemy;
 using Data.Interfaces;
 using Enemy;
+using UniRx;
 using UnityEngine;
 
 namespace Data.Abilities
 {
     public class Kick: MonoBehaviour
     {
-        [SerializeField] private float _damage = 20;
+        [SerializeField] private float _damage;
         
         [Header("Cone Settings")] 
-        [SerializeField] private float maxRadius = 10f;
+        [SerializeField] private float maxRadius;
         [Range(0, 180)] 
-        [SerializeField] private float coneAngle = 45f;
+        [SerializeField] private float coneAngle;
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private LayerMask obstacleLayer;
         
-        [SerializeField, Min(0f)] private float _forceAttack = 35f;
-        [SerializeField, Min(0f)] private float _countdown = 5f;
+        [SerializeField, Min(0f)] private float _forceAttack;
+        [SerializeField, Min(0f)] private float _countdown;
         private float _elapsedTime;
         
         private Collider[] _results = new Collider[5];
         private int _resultsCount;
+        
+        private ReactiveCommand _kickShot = new();
+        public ReactiveCommand KickShot => _kickShot;
         
         private void Update()
         {
@@ -41,6 +45,7 @@ namespace Data.Abilities
         private void Shoot()
         {
             _resultsCount = Physics.OverlapSphereNonAlloc(transform.position, maxRadius, _results, enemyLayer);
+            _kickShot.Execute();
             TryAttack();
         }
         

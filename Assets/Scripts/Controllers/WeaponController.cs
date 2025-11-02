@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Data;
+using Data.Abilities;
 using Enums;
 using UniRx;
 using UnityEngine;
@@ -13,15 +14,20 @@ namespace Controllers
         private InventoryData _inventoryData;
         private GameController _gameController;
         
+        [SerializeField] private Kick _kick;
         [SerializeField] private List<WeaponData> _weaponsData;
         private List<WeaponData> _savableWeaponsData = new();
-        private WeaponData _currentWeapon;
+        private ReactiveProperty<WeaponData> _currentWeapon = new();
         
         private ReactiveProperty<int> _currentAmmoCount = new(0);
 
         private bool _isControllerStop = false;
+        public IReadOnlyReactiveProperty<WeaponData> CurrentWeaponData => _currentWeapon;
         public IReadOnlyReactiveProperty<int> CurrentAmmoCount => _currentAmmoCount;
+        public ReactiveCommand Kick = new();
         
+        public ReactiveCommand WeaponFirstTypeAttack = new();
+        public ReactiveCommand WeaponSecondTypeAttack = new();
         
         [Inject]
         private void Initialized(InventoryData inventoryData, GameController gameController)
@@ -32,6 +38,8 @@ namespace Controllers
         
         private void Start()
         {
+            Kick = _kick.KickShot;
+            
             _inventoryData.CurrentWeaponType
                 .Subscribe(PickWeapon)
                 .AddTo(this);
@@ -72,20 +80,23 @@ namespace Controllers
 
         private void PickWeapon(EWeapon weaponType)
         {
-            _currentWeapon = _weaponsData.FirstOrDefault(data => data.type == weaponType);
-            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.AmmoCount);
+            _currentWeapon.Value = _weaponsData.FirstOrDefault(data => data.type == weaponType);
+            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.Value.AmmoCount);
         }
 
         private void ShootFirstType()
         {
-            _currentWeapon.ShootFirstType();
-            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.AmmoCount);
+            if (_currentWeapon.Value.ShootFirstType())
+                WeaponFirstTypeAttack.Execute();
+            
+            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.Value.AmmoCount);
         }
 
         private void ShootSecondType()
         {
-            _currentWeapon.ShootSecondType();
-            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.AmmoCount);
+            WeaponSecondTypeAttack.Execute();
+            _currentWeapon.Value.ShootSecondType();
+            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.Value.AmmoCount);
         }
 
         private void SaveController()

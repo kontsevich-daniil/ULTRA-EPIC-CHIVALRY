@@ -21,16 +21,16 @@ namespace Data.Weapons
         private Collider[] _results = new Collider[5];
         private int _resultsCount;
 
-        public override void ShootFirstType()
+        public override bool ShootFirstType()
         {
             if(!IsReadyShootFirstType())
-                return;
+                return false;
 
             _resultsCount = Physics.OverlapSphereNonAlloc(transform.position, maxRadius, _results, enemyLayer);
 
             TryAttack();
 
-            Debug.Log("Magic Hands Soot First");
+            return true;
         }
 
         private void TryAttack()

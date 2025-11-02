@@ -17,10 +17,10 @@ namespace Data.Weapons
         [SerializeField, Min(0f)] private float _forceDashFirstAttck = 35f;
         [SerializeField, Min(0f)] private float _forceDashSecondAttack = 35f;
         
-        public override void ShootFirstType()
+        public override bool ShootFirstType()
         {
             if(!IsReadyShootFirstType())
-                return;
+                return false;
             
             if (_bulletPrefab != null)
             {
@@ -28,7 +28,7 @@ namespace Data.Weapons
                 projectile.Rigidbody.AddForce(muzzle.forward * _force, ForceMode.Impulse);
                 playerRigidbody.AddForce(orientationTransform.forward * _forceDashFirstAttck, ForceMode.Impulse);
             }
-            
+            return true;
         }
 
         public override void ShootSecondType()

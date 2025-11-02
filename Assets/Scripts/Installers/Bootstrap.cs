@@ -26,9 +26,9 @@ namespace Installers
                 .AsSingle()
                 .NonLazy();
             
-            Container.Bind<PlayerMovement>()
+            /*Container.Bind<PlayerMovement>()
                 .FromInstance(instance.GetComponent<PlayerData>().playerMovement)
-                .AsSingle();
+                .AsSingle();*/
             
             Container.Bind<WeaponController>()
                 .FromInstance(instance.GetComponent<PlayerData>().weaponController)

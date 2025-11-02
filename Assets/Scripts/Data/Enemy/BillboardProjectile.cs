@@ -12,7 +12,7 @@ namespace Data.Enemy
 
         private void Start()
         {
-            playerCamera = FindObjectOfType<PlayerMovement>().orientation.transform;
+            playerCamera = FindObjectOfType<PlayerController>().transform;
         }
 
         void Update()
