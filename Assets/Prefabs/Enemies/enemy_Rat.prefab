@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2206880134485622248}
   - component: {fileID: 2617576343800342462}
   - component: {fileID: 7880365144418697446}
+  - component: {fileID: -3449938700025061956}
+  - component: {fileID: 2513652781415987181}
   m_Layer: 0
   m_Name: enemy_Rat
   m_TagString: Untagged
@@ -131,6 +133,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!195 &-3449938700025061956
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995668306378636627}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2513652781415987181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995668306378636627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f526b5727724d72ba22165e33091427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySo: {fileID: 11400000, guid: f3731d0f8c00b43efbfb2318829b49f6, type: 2}
+  type: 0
+  pushDecay: 8
+  _player: {fileID: 0}
 --- !u!1 &8241599859283001346
 GameObject:
   m_ObjectHideFlags: 0

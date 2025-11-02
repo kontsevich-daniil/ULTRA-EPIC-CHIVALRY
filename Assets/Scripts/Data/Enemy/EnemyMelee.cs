@@ -11,11 +11,17 @@ namespace Data.Enemy
     public class EnemyMelee : EnemyData, IDamageable
     {
         [SerializeField] private Transform _player;
+        Animator anim;
 
         [Inject]
         private void Initialized(PlayerController playerController)
         {
             _player = playerController.transform;
+        }
+
+        private void Start()
+        {
+            anim = GetComponent<Animator>();
         }
 
         private void Update()
@@ -54,6 +60,8 @@ namespace Data.Enemy
 
             if (_player.TryGetComponent(out IDamageable damageble))
             {
+                anim.SetBool("iswalking", false);
+                anim.SetBool("isattacking", true);
                 damageble.TakeDamage(_attackDamage);
             }
         }

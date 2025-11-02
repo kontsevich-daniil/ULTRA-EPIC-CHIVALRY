@@ -258,8 +258,8 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 55
-  _forceAttack: 30
-  _countdown: 2
+  _forceAttack: 10
+  _countdown: 0.5
 --- !u!1 &5320116576860508193
 GameObject:
   m_ObjectHideFlags: 0
