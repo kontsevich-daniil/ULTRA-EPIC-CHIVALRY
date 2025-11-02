@@ -1,14 +1,23 @@
+using System;
+using Controllers;
 using Data.Interfaces;
 using Enemy;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 
 namespace Data.Enemy
 {
     public class EnemyMelee : EnemyData, IDamageable
     {
         [SerializeField] private Transform _player;
-        
+
+        [Inject]
+        private void Initialized(PlayerMovement playerMovement)
+        {
+            _player = playerMovement.transform;
+        }
+
         private void Update()
         {
             if (_isDead || _player == null) 

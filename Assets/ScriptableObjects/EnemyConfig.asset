@@ -20,3 +20,10 @@ MonoBehaviour:
     DetectionRange: 10
     AttackRange: 3
     AttackCooldown: 2
+  - Type: 0
+    MaxHealth: 100
+    MoveSpeed: 0
+    AttackDamage: 20
+    DetectionRange: 10
+    AttackRange: 3
+    AttackCooldown: 2
