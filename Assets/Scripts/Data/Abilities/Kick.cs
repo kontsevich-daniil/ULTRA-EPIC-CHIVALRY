@@ -63,8 +63,13 @@ namespace Data.Abilities
                         
                         damageable.TakeDamage(_damage);
                         if(_results[i].TryGetComponent(out EnemyData enemy))
-                            enemy.KnockBackFrom(collidersTarget.forward, _forceAttack);
+                            enemy.KnockBackFrom(transform.position, _forceAttack);
                     }
+                }
+
+                if (_results[i].TryGetComponent(out IDestroyerObject damageableObject))
+                {
+                    damageableObject.DestroySelf();
                 }
             }
         }

@@ -7,8 +7,13 @@ namespace Data.Projectiles
 {
     public class CrossbowProjectile: ProjectileData
     {
+        [SerializeField] private LayerMask _ignoredLayerMask;
+
         protected override void OnTargetCollision(Collision collision, IDamageable damageable)
         {
+            if (collision.gameObject.CompareTag("Player")) 
+                return;
+            
             base.OnTargetCollision(collision, damageable);
             damageable.TakeDamage(Damage);
         }
