@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Controllers;
 using Cysharp.Threading.Tasks;
+using Installers;
 using TMPro;
 using UniRx;
 using Unity.VisualScripting;
@@ -16,16 +18,19 @@ namespace UI
     public class UIBase : MonoBehaviour
     {
         private GameController _gameController;
+        private LevelsController _levelsController;
 
         public VideoPlayer videoPlayer;
+        public List<VideoClip> videoClips;
         public FadeController fadeController;
         public Image cutsceneImage;
         public TMP_Text timerText;
 
         [Inject]
-        private void Initialized(GameController gameController)
+        private void Initialized(GameController gameController, LevelsController levelsController)
         {
             _gameController = gameController;
+            _levelsController = levelsController;
         }
 
         public void Awake()
@@ -53,7 +58,7 @@ namespace UI
         private async UniTaskVoid LevelCompleted()
         {
             await fadeController.FadeOut();
-            //await PlayVideo();
+            await PlayVideo();
             _gameController.LevelStart.Execute();
         }
 
@@ -61,12 +66,15 @@ namespace UI
         {
             return Observable.Create<Unit>(obserwable =>
             {
+                videoPlayer.gameObject.SetActive(true);
+                videoPlayer.clip = videoClips[_levelsController.CurrentLevelIndex];
                 videoPlayer.loopPointReached += OnVideoEnd;
                 videoPlayer.Play();
 
                 void OnVideoEnd(VideoPlayer video)
                 {
                     video.loopPointReached -= OnVideoEnd;
+                    obserwable.OnNext(Unit.Default);
                     obserwable.OnCompleted();
                 }
 
@@ -74,6 +82,7 @@ namespace UI
                 {
                     videoPlayer.loopPointReached -= OnVideoEnd;
                     videoPlayer.Stop();
+                    videoPlayer.gameObject.SetActive(false);
                 });
             });
         }

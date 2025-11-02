@@ -143,7 +143,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1627200257632048005}
+  - component: {fileID: 5646205795724103972}
   - component: {fileID: 4517865528677540343}
+  - component: {fileID: 1993857444895085455}
   m_Layer: 5
   m_Name: VideoPlayer
   m_TagString: Untagged
@@ -170,6 +172,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5646205795724103972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922270823085187410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Texture: {fileID: 8400000, guid: 2fade82e0f22943368b1e418a4c2550c, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!328 &4517865528677540343
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -178,7 +207,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 922270823085187410}
   m_Enabled: 1
-  m_VideoClip: {fileID: 0}
+  m_VideoClip: {fileID: 32900000, guid: e40482f22c20c44348ad7bf3180da2a3, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -189,23 +218,31 @@ VideoPlayer:
   m_RenderMode: 2
   m_AspectRatio: 2
   m_DataSource: 0
-  m_TimeUpdateMode: 2
+  m_TimeUpdateMode: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 1
+  - 0.8
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
   m_ControlledAudioTrackCount: 1
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
+--- !u!222 &1993857444895085455
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922270823085187410}
+  m_CullTransparentMesh: 1
 --- !u!1 &1121176863755596600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,6 +1270,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 4517865528677540343}
+  videoClips:
+  - {fileID: 32900000, guid: bd59745fb672d483f8d3339e43aa8012, type: 3}
+  - {fileID: 32900000, guid: dfd9556620a9f4e1fa6dc324003cc681, type: 3}
+  - {fileID: 32900000, guid: e4bbf6eede4574a8395a39ab845b7c10, type: 3}
+  - {fileID: 32900000, guid: e40482f22c20c44348ad7bf3180da2a3, type: 3}
   fadeController: {fileID: 6738209651882609262}
   timerText: {fileID: 367132589645025575}
 --- !u!114 &3548745176008987875

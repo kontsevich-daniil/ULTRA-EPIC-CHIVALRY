@@ -16,6 +16,7 @@ namespace Installers
         private int _currentLevelIndex = 0;
 
         private CompositeDisposable levelsDisposable = new();
+        public int CurrentLevelIndex => _currentLevelIndex;
 
         [Inject]
         private void Initialized(GameController gameController)
