@@ -11,6 +11,7 @@ namespace Data.Enemy
 {
     public class EnemyShooter: EnemyData, IDamageable
     {
+        Animator anim;
         [Header("Settings")]
         [SerializeField] private float detectionRange = 15f;
         [SerializeField] private float rotateSpeed = 5f;
@@ -29,6 +30,10 @@ namespace Data.Enemy
         {
             _player = player.transform;
         }
+        private void Start()
+        {
+            anim = GetComponent<Animator>();
+        }
 
         private void Update()
         {
@@ -38,6 +43,7 @@ namespace Data.Enemy
 
             if (distance <= detectionRange)
             {
+                anim.SetBool("iswalking", false);
                 RotateToPlayer();
                 TryShoot();
             }
@@ -61,6 +67,8 @@ namespace Data.Enemy
 
         private async UniTaskVoid Shoot()
         {
+            anim.SetBool("isshooting", true);
+            anim.SetBool("iswalking", false);
             _canShoot = false;
 
             var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);

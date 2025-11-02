@@ -16,14 +16,14 @@ MonoBehaviour:
   - Type: 0
     MaxHealth: 100
     MoveSpeed: 3
-    AttackDamage: 10
+    AttackDamage: 1
     DetectionRange: 10
     AttackRange: 3
     AttackCooldown: 2
   - Type: 0
     MaxHealth: 100
     MoveSpeed: 0
-    AttackDamage: 20
+    AttackDamage: 1
     DetectionRange: 10
     AttackRange: 3
     AttackCooldown: 2
