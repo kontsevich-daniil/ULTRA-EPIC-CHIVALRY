@@ -6,18 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="93bbfbbb-302d-49d6-9596-de4b13014537" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ULTRA-EPIC-CHIVALRY/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ULTRA-EPIC-CHIVALRY/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cutscenes/Scene1.mp4.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cutscenes/Scene1.mp4.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cutscenes/Scene2.mp4.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cutscenes/Scene2.mp4.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cutscenes/Scene3.mp4.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cutscenes/Scene3.mp4.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Cutscenes/Scene4.mp4.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Cutscenes/Scene4.mp4.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/SoundController.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/SoundController.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/lvl1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/lvl1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/lvl2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/lvl2.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/lvl3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/lvl3.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/LevelsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/LevelsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelSettings/LevelStartTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelSettings/LevelStartTrigger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/UIBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/UIBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/Bootstrap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/Bootstrap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Sounds/SoundController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Sounds/SoundController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +106,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1762000658510</updated>
-      <workItem from="1762000659543" duration="62823000" />
+      <workItem from="1762000659543" duration="64027000" />
     </task>
     <servers />
   </component>
@@ -130,37 +122,5 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/LevelSettings/LevelStartTrigger.cs</url>
-          <line>30</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/LevelSettings/LevelStartTrigger.cs" containingFunctionPresentation="Lambda expression inside Method 'Start'">
-            <startOffsets>
-              <option value="911" />
-            </startOffsets>
-            <endOffsets>
-              <option value="972" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/LevelSettings/LevelStartTrigger.cs</url>
-          <line>34</line>
-          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/LevelSettings/LevelStartTrigger.cs" containingFunctionPresentation="Method 'Start'">
-            <startOffsets>
-              <option value="1117" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1175" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

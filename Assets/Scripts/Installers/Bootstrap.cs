@@ -14,6 +14,7 @@ namespace Installers
         public PlayerData playerPrefab;
         public SoundController soundController;
         public UIBase UIBase;
+        public SoundController SoundController;
         public override void InstallBindings()
         {
             Container.Bind<GameController>().AsSingle().NonLazy();
