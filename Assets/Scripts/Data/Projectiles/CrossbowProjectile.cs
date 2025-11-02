@@ -1,6 +1,5 @@
 using Data.Bullet;
 using Data.Interfaces;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace Data.Projectiles
