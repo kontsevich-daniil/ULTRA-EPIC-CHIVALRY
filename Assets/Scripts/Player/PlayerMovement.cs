@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private float _accelerationTime = 0.3f;
-    [SerializeField] private float _jumpForce = 5.5f;
+    [SerializeField] private float _movementSpeed = 8f;
+    [SerializeField] private float _accelerationTime = 0.05f;
+    [SerializeField] private float _jumpForce = 3f;
     
     private bool _readyToJump = true;
     
