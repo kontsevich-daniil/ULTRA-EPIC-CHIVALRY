@@ -7,11 +7,13 @@ namespace Controllers
         private float _xRotation;
         private float _yRotation;
 
-        [Header("Settings")] public float bobFrequency = 10f;
+        [Header("Settings")] 
+        public float bobFrequency = 10f;
         public float bobAmplitude = 40f;
         public float smooth = 10f;
 
-        [Header("References")] public PlayerMovement playerController;
+        [Header("References")] 
+        public PlayerMovement playerController;
 
         private float _timer;
     

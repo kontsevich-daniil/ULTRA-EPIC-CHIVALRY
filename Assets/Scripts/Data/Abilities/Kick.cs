@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Data.Enemy;
 using Data.Interfaces;
 using Enemy;
@@ -63,7 +64,7 @@ namespace Data.Abilities
                         
                         damageable.TakeDamage(_damage);
                         if(_results[i].TryGetComponent(out EnemyData enemy))
-                            enemy.KnockBackFrom(transform.position, _forceAttack);
+                            enemy.KnockBackFrom(transform.position, _forceAttack).Forget();
                     }
                 }
 

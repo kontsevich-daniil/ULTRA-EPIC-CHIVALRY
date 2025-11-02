@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Enums;
 using ScriptableObjects;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace Enemy
     public abstract class EnemyData : MonoBehaviour
     {
         protected NavMeshAgent _agent;
+        protected Rigidbody _rigidbody;
         
         protected float _currentHealth;
         protected float _moveSpeed;
@@ -24,11 +26,11 @@ namespace Enemy
         protected bool _isDead = false;
         protected float _lastAttackTime = -Mathf.Infinity;
         
-        [FormerlySerializedAs("enemyConfig")] public EnemySO enemySo;
-        public EEnemy type;
-        
-        public float pushDecay = 8f;
         private Vector3 pushVelocity;
+        
+        public EnemySO enemySo;
+        public EEnemy type;
+        public float pushDecay = 8f;
 
         protected void Awake()
         {
@@ -54,17 +56,20 @@ namespace Enemy
             }
         }
 
-        public void KnockBackFrom(Vector3 source, float strength)
+        public async UniTaskVoid KnockBackFrom(Vector3 source, float strength)
         {
-            Vector3 dir = (transform.position - source);
-            dir.y = 0;
-            dir.Normalize();
-            pushVelocity += dir * strength;
+            _agent.enabled = false;
+            _rigidbody.AddForce((transform.position - source) * strength, ForceMode.Impulse);
+            await UniTask.Delay(TimeSpan.FromSeconds(3));
+            _rigidbody.velocity = Vector3.zero;
+            _rigidbody.angularVelocity = Vector3.zero;
+            _agent.enabled = true;
         }
 
         private void AgentSetup()
         {
             _agent = GetComponent<NavMeshAgent>();
+            _rigidbody = GetComponent<Rigidbody>();
             _agent.speed = _moveSpeed;
             _agent.stoppingDistance = _attackRange * 0.8f;
         }

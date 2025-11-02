@@ -27,7 +27,7 @@ namespace Data.Enemy
 
             float distance = Vector3.Distance(transform.position, _player.position);
 
-            if (distance <= _detectionRange)
+            if (distance <= _detectionRange && _agent.enabled)
             {
                 _agent.SetDestination(_player.position);
 

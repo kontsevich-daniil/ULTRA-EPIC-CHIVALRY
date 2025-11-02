@@ -17,6 +17,7 @@ namespace Data.Enemy
         [SerializeField] private float shootCooldown = 1.2f;
 
         [Header("Shooting")]
+        [SerializeField] private float forceShoot = 10f;
         [SerializeField] private Transform firePoint;
         [SerializeField] private ProjectileData projectilePrefab;
 
@@ -63,7 +64,7 @@ namespace Data.Enemy
             _canShoot = false;
 
             var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
-            projectile.Rigidbody.AddForce(firePoint.forward * 20, ForceMode.Impulse);
+            projectile.Rigidbody.AddForce(firePoint.forward * forceShoot, ForceMode.Impulse);
 
             await UniTask.Delay(TimeSpan.FromSeconds(shootCooldown), cancellationToken: this.GetCancellationTokenOnDestroy());
 

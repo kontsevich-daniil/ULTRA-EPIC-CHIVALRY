@@ -23,6 +23,9 @@ namespace Data.Projectiles
         
         protected override void OnTargetCollision(Collision collision, IDamageable damageable)
         {
+            if(collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                return;
+            
             base.OnTargetCollision(collision, damageable);
             damageable.TakeDamage(Damage);
             DisposeProjectile();
