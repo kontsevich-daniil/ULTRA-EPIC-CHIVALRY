@@ -20,7 +20,7 @@ namespace LevelSettings
 
         private void Start()
         {
-            _gameController.LevelRestart
+            _gameController.LevelRestart.Merge(_gameController.LevelStart)
                 .Subscribe(_ => _playerController.transform.position = transform.position)
                 .AddTo(this);
             _playerController.transform.position = transform.position;
