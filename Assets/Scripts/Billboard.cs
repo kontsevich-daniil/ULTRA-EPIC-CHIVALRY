@@ -2,19 +2,31 @@
 
 public class Billboard : MonoBehaviour
 {
-    // Камера, на которую должен смотреть спрайт
-    private Transform cam;
+    [Header("Камера или объект игрока")]
+    public Transform playerCamera;
 
-    void Start()
-    {
-        // Берём главную камеру
-        cam = Camera.main.transform;
-    }
+    [Header("Центр взгляда (пустой объект)")]
+    public Transform lookCenter;
+
+    [Header("Ограничить вращение только по оси Y (для 2D спрайтов)")]
+    public bool lockYRotation = true;
 
     void LateUpdate()
     {
-        // Разворачиваем спрайт лицом к камере
-        transform.LookAt(transform.position + cam.rotation * Vector3.forward,
-                         cam.rotation * Vector3.up);
+        if (playerCamera == null || lookCenter == null)
+            return;
+
+        // Направление от спрайта к точке взгляда игрока
+        Vector3 direction = lookCenter.position - transform.position;
+
+        if (lockYRotation)
+            direction.y = 0f; // фиксируем вертикальный поворот
+
+        // Если направление не нулевое — поворачиваем
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = targetRotation;
+        }
     }
 }
