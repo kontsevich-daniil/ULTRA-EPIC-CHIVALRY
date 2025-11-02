@@ -45,7 +45,11 @@ namespace Controllers
                 .AddTo(this);
             
             _gameController.LevelStart
-                .Subscribe(_ => SaveController())
+                .Subscribe(_ =>
+                {
+                    RestartController();
+                    SaveController();
+                })
                 .AddTo(this);
             SaveController();
             
@@ -112,6 +116,7 @@ namespace Controllers
         
         private void RestartController()
         {
+            _isControllerStop = false;
             _weaponsData.Clear();
             _weaponsData.AddRange(_savableWeaponsData);
             _inventoryData.CurrentWeaponType.Subscribe(PickWeapon).AddTo(this);

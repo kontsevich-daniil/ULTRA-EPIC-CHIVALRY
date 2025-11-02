@@ -3,6 +3,7 @@ using Controllers;
 using Data;
 using ScriptableObjects;
 using Sounds;
+using UI;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +13,7 @@ namespace Installers
     {
         public PlayerData playerPrefab;
         public SoundController soundController;
+        public UIBase UIBase;
         public override void InstallBindings()
         {
             Container.Bind<GameController>().AsSingle().NonLazy();
@@ -26,9 +28,9 @@ namespace Installers
                 .AsSingle()
                 .NonLazy();
             
-            /*Container.Bind<PlayerMovement>()
+            Container.Bind<PlayerMovement>()
                 .FromInstance(instance.GetComponent<PlayerData>().playerMovement)
-                .AsSingle();*/
+                .AsSingle();
             
             Container.Bind<WeaponController>()
                 .FromInstance(instance.GetComponent<PlayerData>().weaponController)
@@ -38,6 +40,13 @@ namespace Installers
                 .FromComponentsInNewPrefab(soundController)
                 .AsSingle()
                 .NonLazy();
+            
+            var instanceUI = Container.InstantiatePrefab(UIBase);
+            
+            Container.Bind<UIPlayer>()
+                .FromInstance(instanceUI.GetComponent<UIPlayer>())
+                .AsSingle();
+            
         }
     }
 }
