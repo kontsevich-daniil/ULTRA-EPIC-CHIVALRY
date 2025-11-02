@@ -26,7 +26,7 @@ namespace Installers
 
         private void Subscribe()
         {
-            _gameController.LevelCompleted
+            _gameController.LevelStart
                 .Subscribe(_ => NextLevel())
                 .AddTo(levelsDisposable);
         }

@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     
     private Rigidbody _rigidbody;
     public bool isMoving;
+    public bool isStopController = false;
     
     private void Start()
     {
@@ -37,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (isStopController)
+            return;
+        
         _isGrounded = Physics.OverlapSphere(_playerIsGroundChecker.position , 0.2f, _groundLayer).Length > 0;
         
         InputUser();
@@ -110,5 +114,18 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         _readyToJump = true;
+    }
+
+    public void StopController()
+    {
+        isStopController = true;
+        _rigidbody.isKinematic = true;
+        _rigidbody.velocity = Vector3.zero;
+    }
+    
+    public void StartController()
+    {
+        isStopController = false;
+        _rigidbody.isKinematic = false;
     }
 }

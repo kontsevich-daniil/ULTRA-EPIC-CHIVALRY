@@ -67,5 +67,19 @@ namespace Controllers
                 _timer = 0f;
             }
         }
+
+        public void StopController()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            enabled = false;
+        }
+        
+        public void StartController()
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            enabled = true;
+        }
     }
 }

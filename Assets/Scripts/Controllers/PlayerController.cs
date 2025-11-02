@@ -1,4 +1,5 @@
 using System;
+using Cysharp.Threading.Tasks;
 using Data.Interfaces;
 using UniRx;
 using UnityEngine;
@@ -21,6 +22,10 @@ namespace Controllers
         private void Awake()
         {
             _currentHealth = _maxHealth;
+            
+            _gameController.LevelRestart
+                .Subscribe(_ => ResetPlayer())
+                .AddTo(this);
         }
         
         public void TakeDamage(float damage)
@@ -40,9 +45,14 @@ namespace Controllers
             }
         }
 
+        public void ResetPlayer()
+        {
+            _currentHealth = _maxHealth;
+        }
+
         public void Die()
         {
-            _gameController.PlayerDied.Execute(Unit.Default);
+            _gameController.PlayerDied.Execute();
         }
     }
 }

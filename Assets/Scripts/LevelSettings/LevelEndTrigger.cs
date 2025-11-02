@@ -1,5 +1,6 @@
 using System;
 using Controllers;
+using Cysharp.Threading.Tasks;
 using Data;
 using Installers;
 using UniRx;
@@ -19,7 +20,8 @@ namespace LevelSettings
         
         private void OnTriggerEnter(Collider other)
         {
-            _gameController.LevelCompleted.Execute(Unit.Default);
+            _gameController.LevelCompleted.Execute();
+            Destroy(this.gameObject);
         }
     }
 }

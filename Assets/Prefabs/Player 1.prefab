@@ -272,11 +272,12 @@ GameObject:
   - component: {fileID: 6367557306260156497}
   - component: {fileID: 2041881323459593331}
   - component: {fileID: 7384730282388109174}
+  - component: {fileID: -94197870577065785}
   - component: {fileID: 8568788759591899784}
   - component: {fileID: 197687345289342769}
   m_Layer: 7
   m_Name: Player 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -368,7 +369,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -399,6 +400,22 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 1
+--- !u!114 &-94197870577065785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5320116576860508193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f4c9e7e550411a8d1ebd35a67bfb29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 8568788759591899784}
+  playerMovement: {fileID: 197687345289342769}
+  playerCameraController: {fileID: 667147945248498501}
+  weaponController: {fileID: 2987861546543644494}
 --- !u!114 &8568788759591899784
 MonoBehaviour:
   m_ObjectHideFlags: 0

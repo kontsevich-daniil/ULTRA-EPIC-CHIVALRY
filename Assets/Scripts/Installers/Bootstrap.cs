@@ -9,18 +9,26 @@ namespace Installers
 {
     public class Bootstrap: MonoInstaller
     {
-        public PlayerController playerPrefab;
+        public PlayerData playerPrefab;
         public override void InstallBindings()
         {
             Container.Bind<GameController>().AsSingle().NonLazy();
             Container.Bind<LevelsController>().AsSingle().NonLazy();
             
             Container.Bind<InventoryData>().AsSingle().NonLazy();
+
+            var instance = Container.InstantiatePrefab(playerPrefab);
             
             Container.Bind<PlayerController>()
-                .FromComponentInNewPrefab(playerPrefab)
+                .FromInstance(instance.GetComponent<PlayerData>().playerController)
                 .AsSingle()
                 .NonLazy();
+            
+            Container.Bind<WeaponController>()
+                .FromInstance(instance.GetComponent<PlayerData>().weaponController)
+                .AsSingle();
+        
+            
         }
     }
 }
