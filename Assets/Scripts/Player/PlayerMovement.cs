@@ -1,14 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float _movementSpeed = 8f;
-    [SerializeField] private float _accelerationTime = 0.05f;
+    [SerializeField] private float _accelerationTime = 0.3f;
     [SerializeField] private float _jumpForce = 3f;
-    
+    [SerializeField] private float _maxSpeed = 10f; // 🔹 Максимальная скорость персонажа
+
     private bool _readyToJump = true;
-    
+
     [Header("Keybinds")]
     private KeyCode _jumpKey = KeyCode.Space;
 
@@ -16,20 +17,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform _playerIsGroundChecker;
     [SerializeField] private LayerMask _groundLayer;
     private bool _isGrounded;
-    
+
     public Transform orientation;
-    
+
     private float _horizontalInput;
     private float _verticalInput;
-    
+
     private Vector3 _moveDirection = Vector3.zero;
-    
+
     private float _currentSpeedFactor;
-    
+
     private Rigidbody _rigidbody;
     public bool isMoving;
     public bool isStopController = false;
-    
+
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -40,32 +41,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isStopController)
             return;
-        
-        _isGrounded = Physics.OverlapSphere(_playerIsGroundChecker.position , 0.2f, _groundLayer).Length > 0;
-        
+
+        _isGrounded = Physics.OverlapSphere(_playerIsGroundChecker.position, 0.2f, _groundLayer).Length > 0;
+
         InputUser();
-        SpeedControl();
         UpdateAcceleration();
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
+        SpeedControl(); // 🔹 Перенес сюда, чтобы работал после AddForce
     }
 
     private void InputUser()
     {
         _horizontalInput = Input.GetAxisRaw("Horizontal");
         _verticalInput = Input.GetAxisRaw("Vertical");
-        
+
         bool inputActive = _horizontalInput != 0 || _verticalInput != 0;
 
-        isMoving = isMoving switch
-        {
-            false when inputActive => true,
-            true when !inputActive => false,
-            _ => isMoving
-        };
+        isMoving = inputActive;
 
         if (Input.GetKey(_jumpKey) && _readyToJump && _isGrounded)
         {
@@ -82,14 +78,17 @@ public class PlayerMovement : MonoBehaviour
         if (isMoving)
         {
             float targetSpeed = _movementSpeed * _currentSpeedFactor;
-            _rigidbody.AddForce(_moveDirection.normalized * targetSpeed, ForceMode.Force);
+
+            // Добавляем силу с контролируемым ускорением
+            _rigidbody.AddForce(_moveDirection.normalized * targetSpeed, ForceMode.Acceleration);
         }
         else
         {
+            // Когда не двигается — останавливаем горизонтальную скорость
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
         }
     }
-    
+
     private void UpdateAcceleration()
     {
         _currentSpeedFactor = isMoving ? Mathf.MoveTowards(_currentSpeedFactor, 1f, Time.deltaTime / _accelerationTime) : 0f;
@@ -97,12 +96,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void SpeedControl()
     {
-        Vector3 finalVelocity = new Vector3(_rigidbody.velocity.x, 0, _rigidbody.velocity.z);
+        Vector3 horizontalVelocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
 
-        if (finalVelocity.magnitude > _movementSpeed)
+        // 🔹 Ограничение горизонтальной скорости
+        if (horizontalVelocity.magnitude > _maxSpeed)
         {
-            Vector3 limitVelocity = finalVelocity.normalized * _movementSpeed;
-            _rigidbody.velocity = new Vector3(limitVelocity.x, _rigidbody.velocity.y, limitVelocity.z);
+            Vector3 limitedVelocity = horizontalVelocity.normalized * _maxSpeed;
+            _rigidbody.velocity = new Vector3(limitedVelocity.x, _rigidbody.velocity.y, limitedVelocity.z);
         }
     }
 
@@ -122,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidbody.isKinematic = true;
         _rigidbody.velocity = Vector3.zero;
     }
-    
+
     public void StartController()
     {
         isStopController = false;
