@@ -3,19 +3,22 @@
 public class DoorTrigger : MonoBehaviour
 {
     [Header("Door Settings")]
-    public Transform doorMesh;         // Ссылка на саму дверь (мэш)
-    public Vector3 openOffset = new Vector3(0, 3f, 0); // Насколько поднимается дверь
-    public float moveSpeed = 3f;       // Скорость открытия/закрытия
+    public Transform doorMesh;                  // Ссылка на саму дверь (мэш)
+    public Vector3 openOffset = new Vector3(0, -3f, 0); // Насколько опускается дверь
+    public float moveSpeed = 3f;                // Скорость открытия/закрытия
 
-    private Vector3 closedPos;         // Позиция в закрытом состоянии
-    private Vector3 openPos;           // Позиция в открытом состоянии
-    private bool isOpening = false;    // Флаг состояния двери
+    [Header("Required Objects")]
+    public GameObject[] objectsToDestroy;       // Объекты, которые нужно уничтожить для открытия двери
+
+    private Vector3 closedPos;                  // Позиция в закрытом состоянии
+    private Vector3 openPos;                    // Позиция в открытом состоянии
+    private bool isOpening = false;             // Флаг состояния двери
 
     void Start()
     {
         // Сохраняем начальное положение двери
         if (doorMesh == null)
-            doorMesh = transform; // если забыли указать вручную
+            doorMesh = transform;
 
         closedPos = doorMesh.position;
         openPos = closedPos + openOffset;
@@ -23,20 +26,31 @@ public class DoorTrigger : MonoBehaviour
 
     void Update()
     {
-        // Плавное перемещение двери между состояниями
+        // Проверяем, уничтожены ли все объекты
+        if (!isOpening && AllObjectsDestroyed())
+        {
+            isOpening = true;
+        }
+
+        // Плавное движение двери
         Vector3 target = isOpening ? openPos : closedPos;
         doorMesh.position = Vector3.MoveTowards(doorMesh.position, target, moveSpeed * Time.deltaTime);
     }
 
-    void OnTriggerEnter(Collider other)
+    /// <summary>
+    /// Проверяет, уничтожены ли все назначенные объекты
+    /// </summary>
+    private bool AllObjectsDestroyed()
     {
-        if (other.CompareTag("Player"))
-            isOpening = true;
-    }
+        if (objectsToDestroy == null || objectsToDestroy.Length == 0)
+            return true; // если не назначено ни одного объекта — дверь сразу открывается
 
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            isOpening = false;
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            if (obj != null)
+                return false; // хотя бы один объект ещё жив
+        }
+
+        return true; // все уничтожены
     }
 }
