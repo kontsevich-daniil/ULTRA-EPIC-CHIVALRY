@@ -10060,6 +10060,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundController
       objectReference: {fileID: 0}
+    - target: {fileID: 2256838710677785220, guid: b51ae7a9fc3f34d0ba8249cf70102c6f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5026983458469266114, guid: b51ae7a9fc3f34d0ba8249cf70102c6f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -36.78536
@@ -10893,6 +10897,10 @@ PrefabInstance:
     - target: {fileID: 3144961936933772079, guid: 693347e0305dbe24f9396bcd53e57641, type: 3}
       propertyPath: m_Name
       value: SceneContext
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144961936933772079, guid: 693347e0305dbe24f9396bcd53e57641, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7621953638685400876, guid: 693347e0305dbe24f9396bcd53e57641, type: 3}
       propertyPath: m_NavMeshData

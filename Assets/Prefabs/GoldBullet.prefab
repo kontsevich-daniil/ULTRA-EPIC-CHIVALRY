@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c059c1421e6b46179e30c982aa3395f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 35
   _projectileRigidbody: {fileID: 581596548978277512}
   _spawnEffectOnDestroy: 0
   _effectOnDestroyPrefab: {fileID: 0}

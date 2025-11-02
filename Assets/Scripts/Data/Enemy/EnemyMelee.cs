@@ -47,7 +47,7 @@ namespace Data.Enemy
             }
             else
             {
-                _agent.ResetPath();
+                //_agent.ResetPath();
             }
         }
 
