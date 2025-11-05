@@ -11169,6 +11169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrigerStartScene
       objectReference: {fileID: 0}
+    - target: {fileID: 7354800626942418819, guid: 73432a0dc373a084ba6864d95e8e1aed, type: 3}
+      propertyPath: _currentLevelIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8824034214552535898, guid: 73432a0dc373a084ba6864d95e8e1aed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.09
