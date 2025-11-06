@@ -76,5 +76,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: -94197870577065785, guid: 8fae748bdab01438e974339911f03b47, type: 3}
   soundController: {fileID: 5517087896668613684, guid: b51ae7a9fc3f34d0ba8249cf70102c6f, type: 3}
+  lifeCycleController: {fileID: 4727791718265103125, guid: cb2c5d4b3c2df4cf2b3e9dc4964877c9, type: 3}
   UIBase: {fileID: 3023244042094403745, guid: d9e86be0d37a3494f8167640ab5a0031, type: 3}
-  UIPlayer: {fileID: 0}

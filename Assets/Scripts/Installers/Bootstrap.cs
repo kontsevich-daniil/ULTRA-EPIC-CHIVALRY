@@ -13,21 +13,26 @@ namespace Installers
     {
         public PlayerData playerPrefab;
         public SoundController soundController;
+        public LifeCycleController lifeCycleController;
         public UIBase UIBase;
-        public SoundController SoundController;
         public override void InstallBindings()
         {
             Container.Bind<GameController>().AsSingle().NonLazy();
-            Container.Bind<LevelsController>().AsSingle().NonLazy();
-            
             Container.Bind<InventoryData>().AsSingle().NonLazy();
 
             var instance = Container.InstantiatePrefab(playerPrefab);
+            
+            Container.Bind<PlayerData>()
+                .FromInstance(instance.GetComponent<PlayerData>())
+                .AsSingle()
+                .NonLazy();
             
             Container.Bind<PlayerController>()
                 .FromInstance(instance.GetComponent<PlayerData>().playerController)
                 .AsSingle()
                 .NonLazy();
+            
+            Container.Bind<LevelsController>().AsSingle().NonLazy();
             
             Container.Bind<PlayerMovement>()
                 .FromInstance(instance.GetComponent<PlayerData>().playerMovement)
@@ -39,6 +44,11 @@ namespace Installers
             
             Container.Bind<SoundController>()
                 .FromComponentsInNewPrefab(soundController)
+                .AsSingle()
+                .NonLazy();
+            
+            Container.Bind<LifeCycleController>()
+                .FromComponentsInNewPrefab(lifeCycleController)
                 .AsSingle()
                 .NonLazy();
             

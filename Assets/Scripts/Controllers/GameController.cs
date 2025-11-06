@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using Installers;
 using ScriptableObjects;
 using UniRx;
 using UnityEngine;
@@ -10,6 +11,8 @@ namespace Controllers
 {
     public class GameController : IDisposable
     {
+        public readonly ReactiveCommand GameInPause = new();
+        public readonly ReactiveCommand GameInResume = new();
         public readonly ReactiveCommand PlayerDied = new();
         public readonly ReactiveCommand LevelCompleted = new();
         public readonly ReactiveCommand LevelStart = new();
@@ -18,6 +21,7 @@ namespace Controllers
         public ReactiveProperty<int> Timer => _timer;
 
         private CancellationTokenSource _cancellationToken = new();
+        private CompositeDisposable _disposable = new();
 
         [Inject]
         private void Initialized(GameController gameController)
@@ -25,7 +29,8 @@ namespace Controllers
             StartTimer(_cancellationToken.Token).Forget();
             LevelStart
                 .Merge(LevelRestart)
-                .Subscribe(_ => { ResetTimer(); });
+                .Subscribe(_ => { ResetTimer(); })
+                .AddTo(_disposable);
         }
 
         private async UniTaskVoid StartTimer(CancellationToken token)
@@ -56,6 +61,7 @@ namespace Controllers
         {
             PlayerDied?.Dispose();
             LevelCompleted?.Dispose();
+            _disposable?.Dispose();
         }
     }
 }

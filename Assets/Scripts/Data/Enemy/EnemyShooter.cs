@@ -4,32 +4,39 @@ using Cysharp.Threading.Tasks;
 using Data.Bullet;
 using Data.Interfaces;
 using Enemy;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
 namespace Data.Enemy
 {
-    public class EnemyShooter: EnemyData, IDamageable
+    public class EnemyShooter : EnemyData
     {
         Animator anim;
-        [Header("Settings")]
-        [SerializeField] private float detectionRange = 15f;
+        [Header("Settings")] [SerializeField] private float detectionRange = 15f;
         [SerializeField] private float rotateSpeed = 5f;
         [SerializeField] private float shootCooldown = 1.2f;
 
-        [Header("Shooting")]
-        [SerializeField] private float forceShoot = 10f;
+        [Header("Shooting")] [SerializeField] private float forceShoot = 10f;
         [SerializeField] private Transform firePoint;
         [SerializeField] private ProjectileData projectilePrefab;
 
         private Transform _player;
         private bool _canShoot = true;
 
+        private bool _isActive = true;
+
         [Inject]
-        private void Construct(PlayerController player)
+        private void Construct(GameController gameController, PlayerController player)
         {
             _player = player.transform;
+
+            gameController.LevelCompleted
+                .Merge(gameController.PlayerDied)
+                .Subscribe(_ => { _isActive = false; })
+                .AddTo(_disposables);
         }
+
         private void Start()
         {
             anim = GetComponent<Animator>();
@@ -37,7 +44,10 @@ namespace Data.Enemy
 
         private void Update()
         {
-            if (_player == null) return;
+            if (_isDead || _player == null || !_isActive)
+                return;
+            
+            base.Update();
 
             float distance = Vector3.Distance(transform.position, _player.position);
 
@@ -74,25 +84,10 @@ namespace Data.Enemy
             var projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
             projectile.Rigidbody.AddForce(firePoint.forward * forceShoot, ForceMode.Impulse);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(shootCooldown), cancellationToken: this.GetCancellationTokenOnDestroy());
+            await UniTask.Delay(TimeSpan.FromSeconds(shootCooldown),
+                cancellationToken: this.GetCancellationTokenOnDestroy());
 
             _canShoot = true;
-        }
-
-        public void TakeDamage(float damage)
-        {
-            if (_isDead) 
-                return;
-
-            _currentHealth -= damage;
-            if (_currentHealth <= 0)
-                Die();
-        }
-
-        public void Die()
-        {
-            _agent.isStopped = true;
-            Destroy(gameObject);
         }
     }
 }

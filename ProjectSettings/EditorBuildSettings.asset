@@ -13,8 +13,5 @@ EditorBuildSettings:
     guid: 94b03df1ca9fa0641baa42682fb6e427
   - enabled: 1
     path: Assets/Scenes/lvl3.unity
-    guid: d66672a863db6b64e8235e27e39a22eb
-  - enabled: 0
-    path: Assets/Scenes/Gates scene.unity
-    guid: f582f3d0fab5b4c1d94ea087a4ad5528
+    guid: 75105bf16f70ba3458d1690fafa144da
   m_configObjects: {}

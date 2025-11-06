@@ -7,7 +7,6 @@ public class Billboard : MonoBehaviour
 {
     private PlayerController _playerController;
     private Transform playerCamera;
-
     public bool lockYRotation = true;
     
     [Inject]
@@ -23,17 +22,27 @@ public class Billboard : MonoBehaviour
 
     void Update()
     {
+        /*if (playerCamera == null)
+            return;
+
+        Vector3 direction = playerCamera.position;
+
+        transform.LookAt(direction);*/
+        
         if (playerCamera == null)
             return;
 
+        // Направление от спрайта к точке взгляда игрока
         Vector3 direction = playerCamera.position - transform.position;
 
         if (lockYRotation)
-            direction.y = 0f;
+            direction.y = 0f; // фиксируем вертикальный поворот
 
-        if (direction == Vector3.zero) 
-            return;
-        
-        transform.LookAt(direction);
+        // Если направление не нулевое — поворачиваем
+        if (direction != Vector3.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = targetRotation;
+        }
     }
 }

@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 20
   _projectileRigidbody: {fileID: 581596548978277512}
+  _collider: {fileID: 5324150335595121603}
   _spawnEffectOnDestroy: 0
   _effectOnDestroyPrefab: {fileID: 0}
   _effectOnDestroyLifetime: 2

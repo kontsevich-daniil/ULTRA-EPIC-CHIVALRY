@@ -1,5 +1,7 @@
 using System;
 using Controllers;
+using Cysharp.Threading.Tasks;
+using Data;
 using UniRx;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -9,8 +11,8 @@ namespace Installers
     public class LevelsController: IDisposable
     {
         private GameController _gameController;
+        private PlayerData _playerData;
 
-        private bool _isLoaded;
         private bool _shouldLoad;
         private int _maxLevelCount = 1;
         private int _currentLevelIndex = 0;
@@ -19,56 +21,51 @@ namespace Installers
         public int CurrentLevelIndex => _currentLevelIndex;
 
         [Inject]
-        private void Initialized(GameController gameController)
+        private void Initialized(GameController gameController, PlayerData playerData)
         {
             _gameController = gameController;
+            _playerData = playerData;
             Subscribe();
         }
 
         private void Subscribe()
         {
-            _gameController.LevelStart
-                .Subscribe(_ => NextLevel())
+            _gameController.LevelCompleted
+                .Subscribe(_ => NextLevel().Forget())
                 .AddTo(levelsDisposable);
             
-            _gameController.LevelRestart
-                .Subscribe(_ => RestartLevel())
-                .AddTo(levelsDisposable);
+            _gameController.LevelRestart.Subscribe(async _ =>
+            {
+                await RestartLevel();
+                _playerData.RestartControllers();
+            }).AddTo(levelsDisposable);
         }
 
-        private void LoadScene(int levelIndex)
+        private async UniTask LoadScene(int levelIndex)
         {
-            if (_isLoaded)
-                return;
-
-            SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
-            _isLoaded = true;
+            await SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
         }
 
         private void UnLoadScene()
         {
-            /*if (!_isLoaded)
-                return;*/
-
             SceneManager.UnloadSceneAsync(_currentLevelIndex - 1);
-            _isLoaded = false;
         }
 
-        private void NextLevel()
+        private async UniTask NextLevel()
         {
             _currentLevelIndex++;
-            LoadScene(_currentLevelIndex);
+            await LoadScene(_currentLevelIndex);
             UnLoadScene();
         }
 
-        public void RestartLevel()
+        private async UniTask RestartLevel()
         {
-            SceneManager.LoadScene(_currentLevelIndex);
+            await SceneManager.LoadSceneAsync(_currentLevelIndex, LoadSceneMode.Single);
         }
 
         public void NewGame()
         {
-            LoadScene(_currentLevelIndex);
+            LoadScene(_currentLevelIndex).Forget();
         }
 
         public void Dispose()

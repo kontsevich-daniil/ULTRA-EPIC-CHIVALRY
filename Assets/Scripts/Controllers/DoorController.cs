@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DoorTrigger : MonoBehaviour
+public class DoorController : MonoBehaviour
 {
     [Header("Door Settings")]
     public Transform doorMesh;                  // Ссылка на саму дверь (мэш)
@@ -26,14 +26,8 @@ public class DoorTrigger : MonoBehaviour
 
     void Update()
     {
-        // Проверяем, уничтожены ли все объекты
-        if (!isOpening && AllObjectsDestroyed())
-        {
-            isOpening = true;
-        }
-
         // Плавное движение двери
-        Vector3 target = isOpening ? openPos : closedPos;
+        Vector3 target = isOpening && AllObjectsDestroyed() ? openPos : closedPos;
         doorMesh.position = Vector3.MoveTowards(doorMesh.position, target, moveSpeed * Time.deltaTime);
     }
 
@@ -52,5 +46,17 @@ public class DoorTrigger : MonoBehaviour
         }
 
         return true; // все уничтожены
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            isOpening = true;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            isOpening = false;
     }
 }

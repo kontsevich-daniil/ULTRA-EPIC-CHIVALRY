@@ -1,22 +1,32 @@
 using System;
+using System.Threading;
 using Controllers;
+using Cysharp.Threading.Tasks;
 using Data.Interfaces;
 using Enemy;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
 
 namespace Data.Enemy
 {
-    public class EnemyMelee : EnemyData, IDamageable
+    public class EnemyMelee : EnemyData
     {
         [SerializeField] private Transform _player;
         Animator anim;
 
+        private bool _isActive = true;
+
         [Inject]
-        private void Initialized(PlayerController playerController)
+        private void Initialized(GameController gameController, PlayerController playerController)
         {
             _player = playerController.transform;
+
+            gameController.LevelCompleted
+                .Merge(gameController.PlayerDied)
+                .Subscribe(_ => { _isActive = false; })
+                .AddTo(_disposables);
         }
 
         private void Start()
@@ -26,16 +36,16 @@ namespace Data.Enemy
 
         private void Update()
         {
-            if (_isDead || _player == null) 
+            if (_isDead || _player == null || !_isActive)
                 return;
-            
+
             base.Update();
 
             float distance = Vector3.Distance(transform.position, _player.position);
 
-            if(!_agent.enabled)
+            if (!_agent.enabled)
                 return;
-            
+
             if (distance <= _detectionRange)
             {
                 _agent.SetDestination(_player.position);
@@ -66,22 +76,6 @@ namespace Data.Enemy
             }
         }
 
-        public void TakeDamage(float damage)
-        {
-            if (_isDead) 
-                return;
-
-            _currentHealth -= damage;
-            if (_currentHealth <= 0)
-                Die();
-        }
-
-        public void Die()
-        {
-            _agent.isStopped = true;
-            Destroy(gameObject);
-        }
-        
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = new Color(1, 0, 0, 0.3f);

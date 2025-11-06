@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _movementSpeed = 8f;
     [SerializeField] private float _accelerationTime = 0.3f;
     [SerializeField] private float _jumpForce = 3f;
-    [SerializeField] private float _maxSpeed = 10f; // 🔹 Максимальная скорость персонажа
+    [SerializeField] private float _maxSpeed = 10f;
 
     private bool _readyToJump = true;
 
@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        SpeedControl(); // 🔹 Перенес сюда, чтобы работал после AddForce
+        SpeedControl();
     }
 
     private void InputUser()
@@ -79,12 +79,10 @@ public class PlayerMovement : MonoBehaviour
         {
             float targetSpeed = _movementSpeed * _currentSpeedFactor;
 
-            // Добавляем силу с контролируемым ускорением
             _rigidbody.AddForce(_moveDirection.normalized * targetSpeed, ForceMode.Acceleration);
         }
         else
         {
-            // Когда не двигается — останавливаем горизонтальную скорость
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
         }
     }
@@ -98,7 +96,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 horizontalVelocity = new Vector3(_rigidbody.velocity.x, 0f, _rigidbody.velocity.z);
 
-        // 🔹 Ограничение горизонтальной скорости
         if (horizontalVelocity.magnitude > _maxSpeed)
         {
             Vector3 limitedVelocity = horizontalVelocity.normalized * _maxSpeed;

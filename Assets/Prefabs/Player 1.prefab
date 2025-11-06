@@ -181,7 +181,7 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 1
-  coneAngle: 25
+  coneAngle: 35
 --- !u!1 &4196232544702459824
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  maxRadius: 20
+  maxRadius: 4
   coneAngle: 45
   enemyLayer:
     serializedVersion: 2
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67993114a8d94dfaa98b21adfddf7c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerCollider: {fileID: 2041881323459593331}
 --- !u!114 &197687345289342769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,6 +445,7 @@ MonoBehaviour:
   _movementSpeed: 30
   _accelerationTime: 0.2
   _jumpForce: 5.5
+  _maxSpeed: 10
   _playerIsGroundChecker: {fileID: 4393713491007595865}
   _groundLayer:
     serializedVersion: 2
@@ -476,7 +478,7 @@ Transform:
   m_GameObject: {fileID: 6576598880224556159}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -507,13 +509,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6993244117538052070}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.59, y: -0.44599998, z: 1.6920002}
+  m_LocalRotation: {x: 0, y: -0.01745245, z: 0, w: 0.99984777}
+  m_LocalPosition: {x: 0.29999998, y: -0.3, z: 1.6920002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1826326771516815544}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -2, z: 0}
 --- !u!1 &9070076448140340952
 GameObject:
   m_ObjectHideFlags: 0

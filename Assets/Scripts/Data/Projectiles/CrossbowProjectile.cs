@@ -1,3 +1,4 @@
+using System;
 using Data.Bullet;
 using Data.Interfaces;
 using UnityEngine;
@@ -6,21 +7,31 @@ namespace Data.Projectiles
 {
     public class CrossbowProjectile: ProjectileData
     {
-        [SerializeField] private LayerMask _ignoredLayerMask;
-
-        protected override void OnTargetCollision(Collision collision, IDamageable damageable)
+        [SerializeField] private LayerMask _targetLayerMask;
+        
+        private void OnTriggerEnter(Collider other)
         {
-            if (collision.gameObject.CompareTag("Player")) 
+            if (IsProjectileDisposed)
                 return;
             
-            base.OnTargetCollision(collision, damageable);
-            damageable.TakeDamage(Damage);
+            if (other.gameObject.TryGetComponent(out IDamageable damageable))
+            {
+                OnTargetCollider(other, damageable);
+            }
+
+            if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
+            {
+                Rigidbody.isKinematic = true;
+                Collider.isTrigger = false;
+            }
         }
 
-        protected override void OnAnyCollision(Collision collision)
+        private void OnTargetCollider(Collider collider, IDamageable damageable)
         {
-            base.OnAnyCollision(collision);
-            Rigidbody.isKinematic = true;
+            if (collider.gameObject.layer == LayerMask.NameToLayer("Player")) 
+                return;
+            
+            damageable.TakeDamage(Damage);
         }
     }
 }

@@ -1,7 +1,10 @@
 using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
+using Data.Interfaces;
 using Enums;
 using ScriptableObjects;
+using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -11,10 +14,14 @@ namespace Enemy
 {
     [Serializable]
     [RequireComponent(typeof(NavMeshAgent))]
-    public abstract class EnemyData : MonoBehaviour
+    public abstract class EnemyData : MonoBehaviour, IDamageable, IDisposable
     {
         protected NavMeshAgent _agent;
         protected Rigidbody _rigidbody;
+        [SerializeField] protected SpriteRenderer _model;
+        [SerializeField] protected Billboard _billboard;
+        
+        protected CompositeDisposable _disposables = new();
         
         protected float _currentHealth;
         protected float _moveSpeed;
@@ -58,12 +65,14 @@ namespace Enemy
 
         public async UniTaskVoid KnockBackFrom(Vector3 source, float strength)
         {
+            _billboard.enabled = false;
             _agent.enabled = false;
             _rigidbody.AddForce((transform.position - source) * strength, ForceMode.Impulse);
             await UniTask.Delay(TimeSpan.FromSeconds(3));
             _rigidbody.velocity = Vector3.zero;
             _rigidbody.angularVelocity = Vector3.zero;
             _agent.enabled = true;
+            _billboard.enabled = true;
         }
 
         private void AgentSetup()
@@ -72,6 +81,35 @@ namespace Enemy
             _rigidbody = GetComponent<Rigidbody>();
             _agent.speed = _moveSpeed;
             _agent.stoppingDistance = _attackRange * 0.8f;
+        }
+        
+        public void TakeDamage(float damage)
+        {
+            if (_isDead) 
+                return;
+
+            _currentHealth -= damage;
+            AnimDamage().Forget();
+            if (_currentHealth <= 0)
+                Die();
+        }
+
+        private async UniTask AnimDamage()
+        {
+            _model.color = Color.red;
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            _model.color = Color.white;
+        }
+
+        public void Die()
+        {
+            _agent.isStopped = true;
+            Destroy(gameObject);
+        }
+
+        public void Dispose()
+        {
+            _disposables?.Dispose();
         }
     }
 }

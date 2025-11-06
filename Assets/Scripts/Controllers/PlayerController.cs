@@ -9,6 +9,7 @@ namespace Controllers
 {
     public class PlayerController: MonoBehaviour, IDamageable
     {
+        [SerializeField] private Collider _playerCollider;
         private GameController _gameController;
         private float _maxHealth = 100;
         private float _currentHealth;
@@ -22,10 +23,6 @@ namespace Controllers
         private void Awake()
         {
             _currentHealth = _maxHealth;
-            
-            _gameController.LevelRestart
-                .Subscribe(_ => ResetPlayer())
-                .AddTo(this);
         }
         
         public void TakeDamage(float damage)
@@ -48,10 +45,12 @@ namespace Controllers
         public void ResetPlayer()
         {
             _currentHealth = _maxHealth;
+            _playerCollider.enabled = true;
         }
 
         public void Die()
         {
+            _playerCollider.enabled = false;
             _gameController.PlayerDied.Execute();
         }
     }

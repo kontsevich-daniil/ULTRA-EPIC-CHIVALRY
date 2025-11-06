@@ -17,6 +17,8 @@ namespace UI
 {
     public class UIBase : MonoBehaviour
     {
+        [SerializeField] private GameObject _pausePanel;   
+        
         private GameController _gameController;
         private LevelsController _levelsController;
 
@@ -50,6 +52,16 @@ namespace UI
                 fadeController.FadeOut();
             }).AddTo(this);
             
+            _gameController.GameInPause.Subscribe(_ =>
+            {
+                _pausePanel.SetActive(true);
+            }).AddTo(this);
+            
+            _gameController.GameInResume.Subscribe(_ =>
+            {
+                fadeController.FadeIn();
+            }).AddTo(this);
+            
             _gameController.Timer
                 .Subscribe(timer => timerText.text = timer.ToString())
                 .AddTo(this);
@@ -67,7 +79,7 @@ namespace UI
             return Observable.Create<Unit>(obserwable =>
             {
                 videoPlayer.gameObject.SetActive(true);
-                videoPlayer.clip = videoClips[_levelsController.CurrentLevelIndex];
+                videoPlayer.clip = videoClips[_levelsController.CurrentLevelIndex - 1];
                 videoPlayer.loopPointReached += OnVideoEnd;
                 videoPlayer.Play();
 

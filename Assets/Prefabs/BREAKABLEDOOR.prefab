@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4088469137591921392}
   - component: {fileID: 3896632975224908103}
   - component: {fileID: 6797440436942608762}
+  - component: {fileID: 7231317924815876940}
   m_Layer: 8
   m_Name: BREAKABLEDOOR
   m_TagString: Untagged
@@ -470,7 +471,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 2623
+  m_VersionIndex: 2617
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -591,6 +592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6387802411726565232}
   doorCollider: {fileID: 6790903153047447930}
+  navMeshObstacle: {fileID: 7231317924815876940}
 --- !u!54 &6797440436942608762
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -618,6 +620,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!208 &7231317924815876940
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3088515162223713587}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.96300006, y: 1.6290001, z: 0.119}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.96300006, y: 1.6290001, z: -0.119}
+  m_TimeToStationary: 0.5
 --- !u!1 &6440504162098236483
 GameObject:
   m_ObjectHideFlags: 0

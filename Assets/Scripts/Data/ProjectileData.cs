@@ -10,8 +10,9 @@
            [Header("Common")]
            [SerializeField, Min(0f)] private float _damage = 10f;
 
-           [Header("Rigidbody")]
+           [Header("Mesh")]
            [SerializeField] private Rigidbody _projectileRigidbody;
+           [SerializeField] private Collider _collider;
 
            [Header("Effect On Destroy")]
            [SerializeField] private bool _spawnEffectOnDestroy = true;
@@ -21,6 +22,7 @@
            public bool IsProjectileDisposed { get; private set; }
            public float Damage => _damage;
            public Rigidbody Rigidbody => _projectileRigidbody;
+           public Collider Collider => _collider;
 
            private void OnCollisionEnter(Collision collision)
            {

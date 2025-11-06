@@ -31,10 +31,6 @@ namespace Data
             _gameController.LevelStart
                 .Subscribe(_ => StartControllers())
                 .AddTo(this);
-            
-            _gameController.LevelRestart
-                .Subscribe(_ => RestartControllers())
-                .AddTo(this);
         }
 
         private void StopControllers()
@@ -49,7 +45,7 @@ namespace Data
             playerCameraController.StartController();
         }
 
-        private void RestartControllers()
+        public void RestartControllers()
         {
             playerController.ResetPlayer();
             playerMovement.StartController();
