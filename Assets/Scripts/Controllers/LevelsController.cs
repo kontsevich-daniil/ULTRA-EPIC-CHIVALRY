@@ -43,7 +43,7 @@ namespace Installers
 
         private async UniTask LoadScene(int levelIndex)
         {
-            await SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Additive);
+            await SceneManager.LoadSceneAsync(levelIndex, LoadSceneMode.Single);
         }
 
         private void UnLoadScene()
