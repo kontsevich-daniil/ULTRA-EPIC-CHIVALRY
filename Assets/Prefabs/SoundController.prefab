@@ -61,6 +61,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3ba2d836bc4a14b03b6c0335ac4f2499, type: 3}
   - {fileID: 8300000, guid: 1f3e67ab1985e4d4f8ecb047de1dcd1c, type: 3}
   - {fileID: 8300000, guid: 3cbb0ada24b6341edb6ac297eb56104a, type: 3}
+  - {fileID: 8300000, guid: 68852a7344fe04d23bd14478db612e45, type: 3}
   _vfxSource: {fileID: 7502766188083881977}
   _vfxStop: {fileID: 0}
 --- !u!1 &7369979922915988479
