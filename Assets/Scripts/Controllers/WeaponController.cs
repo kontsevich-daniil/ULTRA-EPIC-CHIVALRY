@@ -16,7 +16,7 @@ namespace Controllers
         
         [SerializeField] private Kick _kick;
         [SerializeField] private List<WeaponData> _weaponsData;
-        private List<WeaponData> _savableWeaponsData = new();
+        [SerializeField] private List<WeaponData> _savableWeaponsData = new();
         private ReactiveProperty<WeaponData> _currentWeapon = new();
         
         private ReactiveProperty<int> _currentAmmoCount = new(0);
@@ -118,7 +118,13 @@ namespace Controllers
         {
             _isControllerStop = false;
             _weaponsData.Clear();
-            _weaponsData.AddRange(_savableWeaponsData);
+            foreach (var weapon in _weaponsData)
+            {
+                if (weapon.AmmoCount >= 0)
+                {
+                    weapon.SetAmmo(35);
+                }
+            }
             _inventoryData.CurrentWeaponType.Subscribe(PickWeapon).AddTo(this);
         }
     }

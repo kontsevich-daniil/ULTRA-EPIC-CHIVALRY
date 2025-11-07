@@ -57,6 +57,11 @@ namespace Data
             return true;
         }
 
+        public void SetAmmo(int ammoCount)
+        {
+            _ammoCount = ammoCount;
+        }
+
         protected bool IsReadyShootSecondType()
         {
             if (Time.time < lastShootTimeSecondAttack + _cooldownSecondAttack) 

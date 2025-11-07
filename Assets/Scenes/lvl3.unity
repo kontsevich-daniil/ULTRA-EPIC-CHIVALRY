@@ -15726,6 +15726,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrigerStartScene
       objectReference: {fileID: 0}
+    - target: {fileID: 7354800626942418819, guid: 73432a0dc373a084ba6864d95e8e1aed, type: 3}
+      propertyPath: _currentLevelIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8824034214552535898, guid: 73432a0dc373a084ba6864d95e8e1aed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22875,6 +22879,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f526b5727724d72ba22165e33091427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 0}
+  _billboard: {fileID: 0}
   enemySo: {fileID: 11400000, guid: f3731d0f8c00b43efbfb2318829b49f6, type: 2}
   type: 0
   pushDecay: 8
@@ -22891,6 +22897,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f526b5727724d72ba22165e33091427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 0}
+  _billboard: {fileID: 0}
   enemySo: {fileID: 11400000, guid: f3731d0f8c00b43efbfb2318829b49f6, type: 2}
   type: 0
   pushDecay: 8
