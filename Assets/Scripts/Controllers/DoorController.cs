@@ -16,7 +16,6 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-        // Сохраняем начальное положение двери
         if (doorMesh == null)
             doorMesh = transform;
 
@@ -26,29 +25,30 @@ public class DoorController : MonoBehaviour
 
     void Update()
     {
-        // Плавное движение двери
-        Vector3 target = isOpening && AllObjectsDestroyed() ? openPos : closedPos;
+        if (!isOpening && AllObjectsDestroyed())
+        {
+            isOpening = true;
+        }
+        
+        Vector3 target = isOpening ? openPos : closedPos;
         doorMesh.position = Vector3.MoveTowards(doorMesh.position, target, moveSpeed * Time.deltaTime);
     }
-
-    /// <summary>
-    /// Проверяет, уничтожены ли все назначенные объекты
-    /// </summary>
+    
     private bool AllObjectsDestroyed()
     {
         if (objectsToDestroy == null || objectsToDestroy.Length == 0)
-            return true; // если не назначено ни одного объекта — дверь сразу открывается
+            return true;
 
         foreach (GameObject obj in objectsToDestroy)
         {
             if (obj != null)
-                return false; // хотя бы один объект ещё жив
+                return false;
         }
 
-        return true; // все уничтожены
+        return true;
     }
     
-    void OnTriggerEnter(Collider other)
+    /*void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             isOpening = true;
@@ -58,5 +58,5 @@ public class DoorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
             isOpening = false;
-    }
+    }*/
 }

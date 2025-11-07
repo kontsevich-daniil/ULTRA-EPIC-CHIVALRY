@@ -51,16 +51,16 @@ namespace Controllers
                     SaveController();
                 })
                 .AddTo(this);
-            SaveController();
             
             _gameController.PlayerDied.Merge(_gameController.LevelCompleted)
                 .Subscribe(_ => StopController())
                 .AddTo(this);
-            SaveController();
             
             _gameController.LevelRestart
                 .Subscribe(_ => RestartController())
                 .AddTo(this);
+            
+            SaveController();
         }
         
         private void Update()

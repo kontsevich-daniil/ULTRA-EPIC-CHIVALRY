@@ -59,7 +59,7 @@ namespace UI
             
             _gameController.GameInResume.Subscribe(_ =>
             {
-                fadeController.FadeIn();
+                _pausePanel.SetActive(false);
             }).AddTo(this);
             
             _gameController.Timer

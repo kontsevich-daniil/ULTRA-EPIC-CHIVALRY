@@ -22,7 +22,7 @@ namespace Data.Abilities
         [SerializeField, Min(0f)] private float _countdown;
         private float _elapsedTime;
         
-        private Collider[] _results = new Collider[5];
+        private Collider[] _results = new Collider[32];
         private int _resultsCount;
         
         private ReactiveCommand _kickShot = new();
