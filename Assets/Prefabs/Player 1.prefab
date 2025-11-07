@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  maxRadius: 20
-  coneAngle: 45
+  maxRadius: 3
+  coneAngle: 68.9
   enemyLayer:
     serializedVersion: 2
     m_Bits: 320
@@ -444,6 +444,7 @@ MonoBehaviour:
   _movementSpeed: 30
   _accelerationTime: 0.2
   _jumpForce: 5.5
+  _maxSpeed: 10
   _playerIsGroundChecker: {fileID: 4393713491007595865}
   _groundLayer:
     serializedVersion: 2

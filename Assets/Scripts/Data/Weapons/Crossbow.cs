@@ -7,7 +7,7 @@ namespace Data.Weapons
     public class Crossbow : WeaponData
     {
         [SerializeField] private Transform muzzle;
-        [SerializeField, Min(0f)] private float _force = 35f;
+        [SerializeField, Min(0f)] private float _force = 55f;
         
         public override bool ShootFirstType()
         {
