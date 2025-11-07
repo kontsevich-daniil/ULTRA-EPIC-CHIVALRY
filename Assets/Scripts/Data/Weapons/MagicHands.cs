@@ -9,14 +9,14 @@ namespace Data.Weapons
 {
     public class MagicHands : WeaponData
     {
-        [SerializeField] private float _damage = 20;
+        [SerializeField] private float _damage = 35;
         [Header("Cone Settings")] 
-        [SerializeField] private float maxRadius = 10f;
+        [SerializeField] private float maxRadius = 5.4f;
         [SerializeField] private LayerMask enemyLayer;
         [SerializeField] private LayerMask obstacleLayer;
 
         [Range(0, 180)] 
-        [SerializeField] private float coneAngle = 45f;
+        [SerializeField] private float coneAngle = 52f;
 
         private Collider[] _results = new Collider[5];
         private int _resultsCount;

@@ -250,8 +250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  maxRadius: 4
-  coneAngle: 45
+  maxRadius: 3
+  coneAngle: 68.9
   enemyLayer:
     serializedVersion: 2
     m_Bits: 320
