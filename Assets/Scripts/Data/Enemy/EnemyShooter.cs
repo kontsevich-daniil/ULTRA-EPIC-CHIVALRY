@@ -20,29 +20,15 @@ namespace Data.Enemy
         [Header("Shooting")] [SerializeField] private float forceShoot = 10f;
         [SerializeField] private Transform firePoint;
         [SerializeField] private ProjectileData projectilePrefab;
-
-        private Transform _player;
+        
         private bool _canShoot = true;
-
-        private bool _isActive = true;
-
-        [Inject]
-        private void Construct(GameController gameController, PlayerController player)
-        {
-            _player = player.transform;
-
-            gameController.LevelCompleted
-                .Merge(gameController.PlayerDied)
-                .Subscribe(_ => { _isActive = false; })
-                .AddTo(_disposables);
-        }
 
         private void Start()
         {
             anim = GetComponent<Animator>();
         }
 
-        private void Update()
+        private new void Update()
         {
             if (_isDead || _player == null || !_isActive)
                 return;
@@ -70,12 +56,18 @@ namespace Data.Enemy
 
         private void TryShoot()
         {
-            if (!_canShoot) return;
+            if (!_canShoot && !_isActive)
+                return;
+            
+            if (Time.time - _lastAttackTime < _attackCooldown)
+                return;
+
+            _lastAttackTime = Time.time;
 
             Shoot().Forget();
         }
 
-        private async UniTaskVoid Shoot()
+        public override async UniTaskVoid Shoot()
         {
             anim.SetBool("isshooting", true);
             anim.SetBool("iswalking", false);

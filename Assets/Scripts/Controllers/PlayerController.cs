@@ -34,14 +34,6 @@ namespace Controllers
                 Die();
         }
 
-        public void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Trap"))
-            {
-                TakeDamage(_maxHealth);
-            }
-        }
-
         public void ResetPlayer()
         {
             _currentHealth = _maxHealth;

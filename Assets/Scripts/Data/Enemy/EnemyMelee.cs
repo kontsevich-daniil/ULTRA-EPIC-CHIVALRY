@@ -13,28 +13,14 @@ namespace Data.Enemy
 {
     public class EnemyMelee : EnemyData
     {
-        [SerializeField] private Transform _player;
         Animator anim;
-
-        private bool _isActive = true;
-
-        [Inject]
-        private void Initialized(GameController gameController, PlayerController playerController)
-        {
-            _player = playerController.transform;
-
-            gameController.LevelCompleted
-                .Merge(gameController.PlayerDied)
-                .Subscribe(_ => { _isActive = false; })
-                .AddTo(_disposables);
-        }
 
         private void Start()
         {
             anim = GetComponent<Animator>();
         }
 
-        private void Update()
+        private new void Update()
         {
             if (_isDead || _player == null || !_isActive)
                 return;
@@ -63,17 +49,26 @@ namespace Data.Enemy
 
         private void TryAttack()
         {
+            if (!_isActive)
+                return;
+            
             if (Time.time - _lastAttackTime < _attackCooldown)
                 return;
 
             _lastAttackTime = Time.time;
+            
+            Shoot().Forget();
+        }
 
+        public override UniTaskVoid Shoot()
+        {
             if (_player.TryGetComponent(out IDamageable damageble))
             {
                 anim.SetBool("iswalking", false);
                 anim.SetBool("isattacking", true);
                 damageble.TakeDamage(_attackDamage);
             }
+            return default;
         }
 
         private void OnDrawGizmosSelected()

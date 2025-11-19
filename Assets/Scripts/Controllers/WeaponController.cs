@@ -85,7 +85,8 @@ namespace Controllers
         private void PickWeapon(EWeapon weaponType)
         {
             _currentWeapon.Value = _weaponsData.FirstOrDefault(data => data.type == weaponType);
-            _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.Value.AmmoCount);
+            if (_currentWeapon.Value != null) 
+                _currentAmmoCount.SetValueAndForceNotify(_currentWeapon.Value.AmmoCount);
         }
 
         private void ShootFirstType()
@@ -117,13 +118,10 @@ namespace Controllers
         private void RestartController()
         {
             _isControllerStop = false;
-            _weaponsData.Clear();
+            //_weaponsData.Clear();
             foreach (var weapon in _weaponsData)
             {
-                if (weapon.AmmoCount >= 0)
-                {
-                    weapon.SetAmmo(35);
-                }
+                weapon.SetMaxAmmo();
             }
             _inventoryData.CurrentWeaponType.Subscribe(PickWeapon).AddTo(this);
         }

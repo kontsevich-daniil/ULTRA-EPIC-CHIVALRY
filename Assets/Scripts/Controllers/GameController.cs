@@ -31,6 +31,11 @@ namespace Controllers
                 .Merge(LevelRestart)
                 .Subscribe(_ => { ResetTimer(); })
                 .AddTo(_disposable);
+            
+            LevelCompleted
+                .Merge(PlayerDied)
+                .Subscribe(_ => { StopTimer(); })
+                .AddTo(_disposable);
         }
 
         private async UniTaskVoid StartTimer(CancellationToken token)
@@ -46,6 +51,11 @@ namespace Controllers
                     PlayerDied.Execute();
                 }
             }
+        }
+
+        private void StopTimer()
+        {
+            _cancellationToken.Cancel();
         }
 
         private void ResetTimer()

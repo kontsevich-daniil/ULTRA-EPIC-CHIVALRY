@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using Controllers;
 using Cysharp.Threading.Tasks;
 using Data.Interfaces;
 using Enums;
@@ -8,6 +9,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using Zenject;
 using Zenject.SpaceFighter;
 
 namespace Enemy
@@ -20,6 +22,9 @@ namespace Enemy
         protected Rigidbody _rigidbody;
         [SerializeField] protected SpriteRenderer _model;
         [SerializeField] protected Billboard _billboard;
+        protected Transform _player;
+        
+        protected bool _isActive = true;
         
         protected CompositeDisposable _disposables = new();
         
@@ -38,6 +43,17 @@ namespace Enemy
         public EnemySO enemySo;
         public EEnemy type;
         public float pushDecay = 8f;
+        
+        [Inject]
+        private void Construct(GameController gameController, PlayerController playerController)
+        {
+            _player = playerController.transform;
+            
+            gameController.LevelCompleted
+                .Merge(gameController.PlayerDied)
+                .Subscribe(_ => { _isActive = false; })
+                .AddTo(_disposables);
+        }
 
         protected void Awake()
         {
@@ -82,6 +98,7 @@ namespace Enemy
             _agent.speed = _moveSpeed;
             _agent.stoppingDistance = _attackRange * 0.8f;
         }
+
         
         public void TakeDamage(float damage)
         {
@@ -111,5 +128,7 @@ namespace Enemy
         {
             _disposables?.Dispose();
         }
+
+        public abstract UniTaskVoid Shoot();
     }
 }

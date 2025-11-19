@@ -14,7 +14,7 @@ namespace Data
     public abstract class WeaponData: MonoBehaviour
     {
         [SerializeField] private WeaponSO weaponSo;
-        
+        private WeaponConfig _weaponConfig;
         private int _ammoCount = 0;
         protected float _cooldownFirstAttack;
         protected float _cooldownSecondAttack;
@@ -31,13 +31,13 @@ namespace Data
 
         protected void Awake()
         {
-            var weaponConfig = weaponSo.GetWeapon(type);
+            _weaponConfig = weaponSo.GetWeapon(type);
             
-            _ammoCount = weaponConfig.AmmoCount;
-            _bulletPrefab = weaponConfig.BulletPrefab;
-            _shootSound = weaponConfig.ShootSound;
-            _cooldownFirstAttack = weaponConfig.CooldownFirstAttack;
-            _cooldownSecondAttack = weaponConfig.CooldownSecondAttack;
+            _ammoCount = _weaponConfig.AmmoCount;
+            _bulletPrefab = _weaponConfig.BulletPrefab;
+            _shootSound = _weaponConfig.ShootSound;
+            _cooldownFirstAttack = _weaponConfig.CooldownFirstAttack;
+            _cooldownSecondAttack = _weaponConfig.CooldownSecondAttack;
         }
 
         protected bool IsReadyShootFirstType()
@@ -60,6 +60,11 @@ namespace Data
         public void SetAmmo(int ammoCount)
         {
             _ammoCount = ammoCount;
+        }
+        
+        public void SetMaxAmmo()
+        {
+            _ammoCount = _weaponConfig.AmmoCount;
         }
 
         protected bool IsReadyShootSecondType()

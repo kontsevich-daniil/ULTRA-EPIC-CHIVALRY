@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4007903737312613916}
   - component: {fileID: 6385208098227938194}
   - component: {fileID: 2266805953074032517}
+  - component: {fileID: 3071432117933839115}
   m_Layer: 0
   m_Name: trap
   m_TagString: Trap
@@ -424,5 +425,17 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5.3225446, y: 39.46, z: 4.985899}
-  m_Center: {x: -2.6612713, y: -18.508787, z: 1.3545752}
+  m_Size: {x: 5.3225446, y: 34.075897, z: 4.985899}
+  m_Center: {x: -2.6612713, y: -21.200827, z: 1.3545752}
+--- !u!114 &3071432117933839115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8241201288602702526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302f3d3361024305a8b1a53be91dd274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
